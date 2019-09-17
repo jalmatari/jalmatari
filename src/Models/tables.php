@@ -45,8 +45,8 @@ class tables extends myModel
     public function cols()
     {
 
-        return $this->hasMany(__NAMESPACE__ . '\tables_cols', 'TABLE_ID');
-            //->orderBy('ORDINAL_POSITION');
+        return $this->hasMany(__NAMESPACE__ . '\tables_cols', 'TABLE_ID')
+            ->orderBy('ORDINAL_POSITION');
     }
 
     public static function showAddBtn($name)
