@@ -7,7 +7,7 @@
 
 namespace Jalmatari\Models;
 
-use DB;
+use DB,Schema;
 use Jalmatari\Funs\Funs;
 
 class tables extends myModel
@@ -17,6 +17,7 @@ class tables extends myModel
         parent::boot();
 
         static::deleting(function ($table) {
+            Schema::dropIfExists($table->name);
             tables_cols::where('TABLE_ID',$table->id)->delete();
         });
     }
@@ -45,6 +46,7 @@ class tables extends myModel
     {
 
         return $this->hasMany(__NAMESPACE__ . '\tables_cols', 'TABLE_ID');
+            //->orderBy('ORDINAL_POSITION');
     }
 
     public static function showAddBtn($name)

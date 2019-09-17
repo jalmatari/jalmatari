@@ -38,7 +38,7 @@ class TablesController extends MyBaseController
     public function edit($id)
     {
         $table = tables::find($id);
-        $cols = tables_cols::where('TABLE_ID', $id)->get();
+        $cols = tables_cols::where('TABLE_ID', $id)->orderBy('ORDINAL_POSITION')->get();
         $sourceFuns = get_class_methods(TablesSourceFuns::class);
         $modelClass = '\Jalmatari\Models\\' . $table->name;//If model In Jalmatari Vendor
         if (!class_exists($modelClass)) {
