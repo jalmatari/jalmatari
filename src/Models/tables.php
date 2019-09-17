@@ -12,10 +12,15 @@ use Jalmatari\Funs\Funs;
 
 class tables extends myModel
 {
-    public function __construct($table = null)
+    public static function boot()
     {
-        parent::__construct($table);//you can add custom table name here
+        parent::boot();
+
+        static::deleting(function ($table) {
+            tables_cols::where('TABLE_ID',$table->id)->delete();
+        });
     }
+
 
     public function nameWithPrefix()
     {
