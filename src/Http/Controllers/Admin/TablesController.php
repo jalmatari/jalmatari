@@ -246,4 +246,12 @@ class TablesController extends MyBaseController
 
     }
 
+    public function changeColOrd()
+    {
+        $col=tables_cols::find(request('colId'));
+        $col->changeOrdAfter(request('afterCol'));
+        $this->recheck();
+        return true;
+    }
+
 }

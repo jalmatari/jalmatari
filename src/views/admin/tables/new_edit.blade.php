@@ -40,6 +40,25 @@
                 return false;
             });
         });
+        $(".sortable").sortable({
+            items: ".multi-field:not(.not-sortable)",
+
+            stop: function (event, ui) {
+                counter = 1;
+                $('.col-position').each(function () {
+                    $(this).text(counter++);
+                });
+                colId = ui.item.find('.column-name').data('id');
+                afterCol = ui.item.closest('.multi-field').prev('.multi-field').find('.column-name').text();
+                J.api({
+                    ac: 'changeColOrd',
+                    colId: colId,
+                    afterCol: afterCol
+                }, 'fakePlaPla', '{{route('admin.tables.api')}}');
+
+            }
+        });
+        //$(".sortable").disableSelection();
     });
 
 
@@ -89,13 +108,17 @@
         <div class="clearfix"></div>
     </div>
     <div class="box-body multi-field-wrapper">
-        <div class="multi-fields">
+        <div class="multi-fields sortable">
             @foreach($cols as $col)
                 <div class="multi-field {{$col->COLUMN_NAME.'_row '.($loop->first?'not-sortable':'')}} col-md-12"
                      data-column-name="{{$col->COLUMN_NAME}}">
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-2 text-muted">
+                        <span class="col-position text-green text-bold">{{$col->ORDINAL_POSITION}}</span>
+                        -
+                        <span class="column-name" data-id="{{$col->ID}}">{{$col->COLUMN_NAME}}</span>
                         {!! Funs::Form('hidden',['cols[ID][]',Funs::IsIn($col,'ID',null)]) !!}
-                        {!! Funs::Form('text',['cols[COLUMN_NAME][]',$col->COLUMN_NAME,['class'=>'form-control','dir'=>'ltr','readonly']]) !!}
+                        {!! Funs::Form('hidden',['cols[ORDINAL_POSITION][]',$col->ORDINAL_POSITION,['class'=>'form-control col-xs-2','readonly']]) !!}
+                        {!! Funs::Form('hidden',['cols[COLUMN_NAME][]',$col->COLUMN_NAME,['class'=>'form-control col-xs-9','dir'=>'ltr','readonly']]) !!}
                         {!! Funs::Form('hidden',['cols[OLD_COLUMN_NAME][]',$col->COLUMN_NAME]) !!}
                     </div>
                     <div class="form-group col-md-2">
@@ -202,5 +225,10 @@
     .remove-attr {
         padding: 2px;
         margin-top: 8px;
+    }
+
+    [name="cols[ORDINAL_POSITION][]"] {
+        padding: 0px;
+        text-align: center;
     }
 </style>

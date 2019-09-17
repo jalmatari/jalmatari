@@ -45,7 +45,7 @@ class tables_cols extends myModel
             if ($this->type == "checkbox")
                 $this->data = true;
         }
-        if (!is_null($this->SOURCE)&&$this->SOURCE!='') {
+        if (!is_null($this->SOURCE) && $this->SOURCE != '') {
             $source = json_decode($this->SOURCE);
             if (isset($source->function))
                 $this->data = Funs::CallTableFun($this->tableName, $source->function, $this->data);
@@ -56,7 +56,7 @@ class tables_cols extends myModel
     public function initFieldParameters()
     {
         $parameters = [];
-        $para = json_decode($this->ATTR,true);
+        $para = json_decode($this->ATTR, true);
         if (is_array($para)) {
             foreach ($para as $key => $val)
                 $parameters[ $key ] = $val;
@@ -79,5 +79,30 @@ class tables_cols extends myModel
             "data"  => $this->data,
             "other" => $this->parameters,
         ];;
+    }
+
+    public function changeOrdAfter($afterCol)
+    {
+        $col = $this->name;
+        $table = Funs::DB_Prefix() . $this->tableName;
+        $isNullAble=$this->IS_NULLABLE=='YES';
+        $null = ($isNullAble ? '' : 'NOT ') . "NULL";
+        $type = $this->COLUMN_TYPE;
+
+        $default = 'DEFAULT ';
+        if(is_null($this->COLUMN_DEFAULT)) {
+            if($isNullAble)
+                $default .= 'NULL';
+            else
+                $default = "";
+        }elseif ($this->COLUMN_DEFAULT=='')
+            $default.="''";
+        else
+            $default.=$this->COLUMN_DEFAULT;
+        $extra = $this->EXTRA;
+
+        $sql = "ALTER TABLE `$table` CHANGE `$col` `$col` $type $extra $null $default AFTER `$afterCol`";
+
+        DB::statement($sql);
     }
 }
