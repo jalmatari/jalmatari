@@ -95,7 +95,7 @@
                      data-column-name="{{$col->COLUMN_NAME}}">
                     <div class="form-group col-md-2">
                         {!! Funs::Form('hidden',['cols[ID][]',Funs::IsIn($col,'ID',null)]) !!}
-                        {!! Funs::Form('text',['cols[COLUMN_NAME][]',$col->COLUMN_NAME,['class'=>'form-control','dir'=>'ltr']]) !!}
+                        {!! Funs::Form('text',['cols[COLUMN_NAME][]',$col->COLUMN_NAME,['class'=>'form-control','dir'=>'ltr','readonly']]) !!}
                         {!! Funs::Form('hidden',['cols[OLD_COLUMN_NAME][]',$col->COLUMN_NAME]) !!}
                     </div>
                     <div class="form-group col-md-2">
@@ -122,14 +122,14 @@
                         <div id="fun-pars" {!! $isFunction?'':'style="display:none"' !!}>
                             {!! Funs::Form('label',[ 'cols[source_fun_name_'.$col->COLUMN_NAME.']','اسم الدالة:']) !!}
                             {!! Funs::Form('select',['cols[source_fun_name_'.$col->COLUMN_NAME.']',$sourceFuns,Funs::IsIn($col->SOURCE,'function',null),['class'=>'un-advanced-select form-control']]) !!}
-                            </div>
+                        </div>
                     </div>
                     <div class="form-group col-md-1">
                         {!! Funs::Form('checkbox',['cols[SHOW_IN_LIST_'.$col->COLUMN_NAME.']',null,$col->SHOW_IN_LIST]) !!}
                     </div>
                     <div class="form-group col-md-3 attrs">
                         @if ($col->ATTR != '')
-                            <?php $attrs = json_decode($col->ATTR,true); ?>
+                            <?php $attrs = json_decode($col->ATTR, true); ?>
                             @if (count($attrs) >= 1)
                                 @foreach ($attrs as $key => $attr)
 
