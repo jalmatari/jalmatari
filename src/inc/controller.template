@@ -1,0 +1,18 @@
+<?php
+
+/*
+ * Jamal Al-Matari 2019.
+ * jalmatari@gmail.com
+ */
+
+namespace App\Http\Controllers;
+use Jalmatari\Http\Controllers\Core\MyBaseController;
+
+class controllerName extends MyBaseController
+{
+
+    public function __construct()
+    {
+        $this->init();
+    }
+}

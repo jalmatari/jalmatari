@@ -1,0 +1,23 @@
+{
+    "name": "jalmatari/jalmatari",
+    "description": "Helper Classes and Methods",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jamal Al-Matari",
+            "email": "jalmatari@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0",
+        "laravelcollective/html": "^5.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jalmatari\\": "src/"
+        }
+    }
+
+}

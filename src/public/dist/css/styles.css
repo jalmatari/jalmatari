@@ -1,0 +1,626 @@
+@font-face {
+    font-family: 'me_quran';
+    src: url('../../../css/fonts/me_quran.ttf');
+}
+.quran {
+    font-family: 'me_quran';
+}
+.bracket {
+    font-family: "Simplified Arabic" !important;
+}
+.box-tools li {
+    list-style: none;
+    white-space: nowrap;
+}
+
+.img-60 {
+    height: 60px;
+}
+
+.sidebar-menu .treeview-menu {
+    margin: 0px;
+    padding: 0px;
+    padding-right: 20px;
+}
+
+.permission_filed .lbl {
+    float: left;
+    width: 88%;
+}
+
+.permission_filed .chk {
+    float: right;
+    width: 9%;
+}
+
+.permissions_fileds {
+    display: inline-block;
+}
+
+.box-header.with-border {
+    margin-bottom: 15px;
+}
+
+.users-list > li {
+    float: right;
+    cursor: pointer;
+}
+
+.users-list > li.disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.user-chk {
+    display: list-item;
+    width: 50px;
+}
+
+.users_fileds img {
+    width: 150px;
+}
+
+li.multi-field,
+li.path-field {
+    list-style: decimal;
+    height: 35px;
+    cursor: move;
+}
+
+.first-menu-lbl {
+    left: 30px !important;
+}
+
+.user.user-menu ul.dropdown-menu {
+    box-shadow: 0px 10px 14px #aaa !important;
+    border: 1px solid #aaa;
+    border-top: none;
+    padding: 0px;
+}
+
+.user-menu .btn {
+    padding: 5px;
+}
+
+.user-group-lbl {
+    color: #777;
+    border: 1px solid #ddd;
+    padding: 0.1em .3em;
+}
+
+.multi-fields .multi-field,
+.path-fields .path-field {
+    border-top: 1px solid #f4f4f4;
+    cursor: all-scroll;
+    line-height: 21px;
+}
+
+.multi-fields .multi-field:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.multi-field .fa-arrows,
+.path-field .fa-arrows {
+    padding: 7px;
+}
+
+.multi-field:first-child .remove-field {
+    display: none;
+}
+
+.timeline:before {
+    right: 40px;
+    left: auto;
+}
+
+.timeline > li > .fa, .timeline > li > .glyphicon, .timeline > li > .ion {
+    right: 18px;
+    left: auto;
+}
+
+.timeline > li {
+    position: relative;
+    margin-left: 10px;
+}
+
+.timeline > li > .timeline-item {
+    margin: -20px 60px 0px 15px;
+    width: calc(100% - 75px);
+    display: inline-block;
+}
+
+option[disabled] {
+    color: #D2D6DE;
+}
+
+.multi-field-wrapper {
+    border: 1px solid #D2D6DE;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.small-box .icon {
+    left: 10px;
+    right: auto;
+    top: 5px;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.small-box * {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+legend {
+    width: auto;
+    border: 0px;
+    font-size: 18px;
+    color: #777;
+}
+
+.mailbox-attachments li {
+    float: right;
+}
+
+.mailbox-attachment-icon.has-img > canvas {
+    max-width: 100%;
+    height: 110px;
+    width: 100%;
+    position: relative;
+    min-height: 110px;
+}
+
+.mailbox-attachment-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    display: inline-block;
+}
+
+.mailbox-attachment-icon.has-img > img {
+    height: 110px;
+    width: 198px;
+}
+
+.mailbox-attachment-icon {
+    padding: 0px;
+    height: 110px;
+}
+
+.multi-fields .not-sortable {
+    cursor: default;
+}
+
+.not-sortable .remove-field,
+.not-sortable .fa-arrows {
+    display: none;
+}
+
+.form-control {
+    border-radius: 4px !important;
+}
+
+.tooltip-inner {
+    max-width: inherit;
+}
+
+.files-row {
+    display: list-item;
+    list-style: decimal inside;
+}
+
+.tooltip-inner table.file-info-tooltip {
+    margin: -3px -8px;
+
+}
+
+.tooltip-inner table.file-info-tooltip tr {
+
+}
+
+.form-group {
+    min-height: 75px;
+}
+
+.users_fileds .users-list > li {
+    width: 14%;
+}
+
+.users_fileds blockquote {
+    border: 1px dashed #CCC;
+    border-right: 5px solid #eee;
+    border-radius: 10px;
+}
+
+.input-group *:first-child {
+    border-radius: 0px 4px 4px 0px !important;
+}
+
+.input-group > input[type="search"] {
+    direction: rtl;
+    text-align: right;
+}
+
+.input-group *:last-child {
+    border-radius: 4px 0px 0px 4px !important;
+}
+
+.pre {
+    white-space: pre-wrap;
+}
+
+.noty_message, .noty_text {
+    direction: rtl;
+    text-align: right !important;
+    white-space: pre-wrap;
+}
+
+.noty_message .box-body {
+    padding: 0px;
+    /*margin: 20px -5px 0px -5px;*/
+    white-space: normal;
+    width: 25%;
+}
+
+.noty_message .box-body:after,
+.noty_message .box-body:before {
+    content: none;
+}
+
+.noty_message .dl-horizontal {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+.noty_message .dl-horizontal dd {
+    margin: 0px 5px 0px 0px;
+    height: 24px;
+    float: right;
+}
+
+.noty_message .box-body .progress {
+    margin: 0px 0px -20px 0px;
+}
+
+.noty_message .box-body > br,
+.noty_message .box-body > .btn {
+    display: none;
+}
+
+.tip-txt {
+    font-family: 'Noto Naskh Arabic', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif, serif;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: justify;
+    white-space: pre-wrap;
+}
+
+.main-header .navbar .nav > li > a > .label {
+    right: auto;
+    left: 7px;
+}
+
+.color-palette {
+    width: 25px;
+    height: 25px;
+    margin: 0px 10px -10px 5px;
+    display: inline-block;
+    border-radius: 5px;
+    opacity: 0.9;
+    box-shadow: 0px 0px 5px 0px #D2D6DE;
+}
+
+.chosen-container .chosen-results li.disabled-result {
+    color: #aaa;
+}
+
+#img-upload,
+input[name="email"] {
+    text-align: left;
+    direction: ltr;
+}
+
+#table-dynamic_wrapper > .row > .col-sm-6:first-child {
+    float: left;
+}
+
+#table-dynamic_length {
+    float: left;
+}
+
+.callout {
+    border-right: 5px solid #eee;
+}
+
+.info-box-content {
+    margin: 0px 90px 0px 0px;
+}
+
+.info-box-icon {
+    float: right;
+}
+
+.info-box-icon .fa {
+    line-height: 80px;
+}
+
+.margin-5 {
+    margin: 5px;
+}
+
+.user-img {
+    max-width: 100px;
+}
+
+.photo-form-row .user-img {
+    margin-top: -27px;
+    border-radius: 50%;
+    border: 1px solid #EEE;
+    box-shadow: 0px 0px 0px 2px #DBDBDB;
+}
+
+.mailbox-read-time {
+    white-space: nowrap;
+}
+
+.table-responsive #table-dynamic_wrapper {
+    width: 98%;
+}
+
+.table-row-expand .dl-horizontal {
+    margin-bottom: 0px;
+}
+
+td.details {
+    background: #FFFFF5 url("/admini/dist/img/Lined-Paper-White-Tileable-pattern.jpg");
+    box-shadow: inset 0px 2px 12px -5px #000;
+    border-radius: 0 0 10px 10px;
+    border: 1px dashed #9A9A9A !important;
+    border-top: none !important;
+}
+
+.main-page .small-box h3 {
+    font-family: 'Noto Nastaliq Urdu', serif;
+}
+
+.small-box h3, .small-box [class^="text-"] {
+    overflow: visible;
+}
+
+.progress {
+    background-color: #ECF0F5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#table-dynamic tr td {
+    border-bottom: 1px dashed #9A9A9A;
+    padding: 10px 5px;
+    vertical-align: middle;
+}
+
+.job-name {
+    white-space: nowrap;
+}
+
+td.mailbox-date {
+    width: 100px;
+}
+
+.noty_message .first-col-det,
+.noty_message .last-col-det {
+    border-left: 1px dashed #818181;
+    padding: 1px 10px;
+    display: inline-block;
+    float: right;
+}
+
+.noty_message .first-col-det .dl-horizontal dd,
+.noty_message .last-col-det .dl-horizontal dd {
+    margin-right: 5px;
+}
+
+.noty_message .full-hadith {
+    float: right;
+    width: 50%;
+    padding: 0px 10px;
+    text-align: justify;
+}
+
+.text-white {
+    color: #fff;
+}
+
+tr[class*=bg-] *[class*=text-] {
+    color: #fff !important;
+}
+
+.daterangepicker td.start-date {
+    border-radius: 0 4px 4px 0 !important;
+}
+
+.daterangepicker td.end-date {
+    border-radius: 4px 0 0 4px !important;
+}
+
+.daterangepicker .ranges,
+.daterangepicker .calendar {
+    float: right !important;
+}
+
+.calendar.left .fa-chevron-left:before {
+    content: "\f054";
+}
+
+.calendar.right .fa-chevron-right:before {
+    content: "\f053"
+}
+
+.daterangepicker select.monthselect {
+    margin-left: 2% !important;
+}
+
+.hint-txt {
+    font-size: 12px;
+}
+
+.relative {
+    position: relative;
+}
+
+.chosen-container {
+    min-width: 150px;
+    max-width: 100%;
+}
+
+.foot-html-section {
+    border-top: 1px dashed #ccc;
+    margin: 0px -10px;
+    padding: 10px 0px;
+    color: #2681bc;
+    font-weight: bold;
+    display: inline-block;
+    width: 100%;
+}
+
+.foot-html-section > * {
+    float: right;
+    padding: 0px 15px;
+    border-left: 1px solid #ccc;
+}
+
+.ltr {
+    direction: ltr;
+}
+.rtl{
+    direction: rtl;
+}
+
+#table-dynamic .files-row {
+    display: inline-block;
+}
+
+.label-as-badge {
+    border-radius: 1em;
+}
+
+.progress-group .progress-number {
+    float: left;
+}
+
+.info-box-content .progress {
+    border: 0px;
+}
+
+.info-box {
+    min-height: 122px;
+}
+
+.info-box-icon {
+    height: 122px;
+}
+
+.box-header .box-title {
+    white-space: nowrap;
+}
+
+.content-header > h1 > small,
+.content-header > .breadcrumb > li > a {
+    white-space: nowrap;
+}
+
+thead > tr > * {
+    text-align: center;
+}
+
+.bg-disabled {
+    background: #ddd !important;
+}
+
+.details .path-items {
+    display: none;
+}
+
+.details .current-status:after {
+    content: "";
+    border: 13px solid transparent;
+    position: absolute;
+    border-top-color: #999;
+    margin-top: -50px;
+    margin-right: -27px;
+}
+
+.bg-gray {
+    color: #777;
+}
+
+.sidebar-form .input-group *:first-child {
+    direction: rtl;
+    text-align: right;
+}
+
+.inner-box-block {
+    padding: 0px 10px;
+    border: 1px dashed #e8e8e8;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px -3px #777;
+    margin: 20px 10px;
+    overflow: hidden;
+}
+
+.inner-box-block-title {
+    margin: 0px -10px 10px -10px;
+    padding: 15px 10px;
+    background: #f4f4f4;
+}
+
+.td-img {
+    height: 100px;
+    width: 200px;
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 12px -6px #000;
+}
+
+.td-img img {
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    width: auto;
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+}
+
+
+.user-img-div {
+    height: 100px;
+    width: 100px !important;
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #EEE;
+    box-shadow: 0px 0px 0px 2px #DBDBDB;
+    margin: -36px 10px 0px 0px;
+}
+
+.user-img {
+    width: 100%;
+    min-height: 100%;
+}
