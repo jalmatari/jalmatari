@@ -32,7 +32,7 @@ trait TablesControllerTrait
 
         foreach ($results as $table) {
 
-            $table->IS_New_TABLE=!(bool)$table->TABLE_ID;
+            $table->IS_New_TABLE = !(bool) $table->TABLE_ID;
             //if It's New Table
             if ($table->IS_New_TABLE) {
                 $tableComment = $this->parsingTableComment($table->TABLE_COMMENT);
@@ -67,9 +67,11 @@ trait TablesControllerTrait
                 ->delete();
 
         foreach ($cols as $col) {
-            $col['TYPE'] = intval($col['TYPE']);//some times was error because value empty of TYPE Column
             $whereVals = Arr::only($col, [ 'TABLE_ID', 'COLUMN_NAME' ]);
-            tables_cols::where($whereVals)->updateOrCreate($whereVals, $col);
+            if (tables_cols::where($whereVals)->count() >= 1)
+                tables_cols::where($whereVals)->update($col);
+            else
+                tables_cols::insert($col);
         }
 
     }
@@ -115,7 +117,7 @@ trait TablesControllerTrait
         $results = DB::select($sql);
         $cols = [];
         foreach ($results as $result) {
-            $colComment = $this->parsingColumnComment($result->COLUMN_COMMENT);
+            //$colComment = $this->parsingColumnComment($result->COLUMN_COMMENT);
 
             if (!(in_array($result->COLUMN_DEFAULT, [ null, '', 'CURRENT_TIMESTAMP' ])) && !is_numeric($result->COLUMN_DEFAULT))
                 $result->COLUMN_DEFAULT = "'" . $result->COLUMN_DEFAULT . "'";
@@ -130,10 +132,10 @@ trait TablesControllerTrait
                 'COLUMN_TYPE'      => $result->COLUMN_TYPE,
                 'EXTRA'            => $result->EXTRA,
                 'COLUMN_COMMENT'   => $result->COLUMN_COMMENT,
-                'TITLE'            => $colComment->title,
+                /*'TITLE'            => $colComment->title,
                 'TYPE'             => $colComment->type,
                 'SOURCE'           => $colComment->source,
-                'ATTR'             => $colComment->attr,
+                'ATTR'             => $colComment->attr,*/
             ]);
 
             $cols[] = $col;
@@ -161,9 +163,9 @@ trait TablesControllerTrait
         $modelFile = file(JalmatariServiceProvider::path() . '/inc/model.template');
         $modelFile = str_replace("modelName", $model, $modelFile);
         $modelFile = str_replace("2019", date("Y"), $modelFile);
-        $model=tables::where('name',$model)->first();
-        if(!$model->hasTimestamps)
-            $modelFile = str_replace('//public $timestamps','public $timestamps', $modelFile);
+        $model = tables::where('name', $model)->first();
+        if (!$model->hasTimestamps)
+            $modelFile = str_replace('//public $timestamps', 'public $timestamps', $modelFile);
 
         File::put($fileDire, $modelFile);
         chmod($fileDire, 0775);
