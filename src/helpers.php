@@ -70,3 +70,15 @@ if (!function_exists('setting')) {
         return \Jalmatari\Funs\Funs::Setting($settingName, $val);
     }
 }
+
+//Generate fake User object as Deleted user
+if (!function_exists('deleted_user')) {
+    function deleted_user()
+    {
+        return (object) [
+            'id'    => 0,
+            'name'  => __('Deleted User'),
+            'photo' => '/jalmatari/img/users/default-user.png'
+        ];
+    }
+}

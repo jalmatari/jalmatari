@@ -206,4 +206,9 @@ class myModel extends Model
         return $class->getTable();
     }
 
+    public function getDeletedUserAttribute()
+    {
+        return deleted_user();
+    }
+
 }
