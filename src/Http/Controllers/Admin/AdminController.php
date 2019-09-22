@@ -44,7 +44,7 @@ class AdminController extends MyBaseController
         if (auth()->attempt(request()->only('username', 'password'), request()->has('remember')))
             return redirect()->route('admin');
 
-        //return redirect()->back()->withInput();
+        return redirect()->back()->withInput();
     }
 
     public function construction()

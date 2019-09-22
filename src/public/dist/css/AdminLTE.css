@@ -2300,6 +2300,7 @@ a:focus {
   color: #000;
   opacity: 0.2;
   filter: alpha(opacity=20);
+  text-decoration: none;
 }
 .alert .close:hover {
   opacity: 0.5;
