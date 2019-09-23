@@ -19,7 +19,7 @@ class Lang
             $request->session()->put( 'lang' , $request->get('lang'));
             //session()->save();
         }
-        app()->setLocale($request->session()->get('lang', config('locale')));
+        app()->setLocale($request->session()->get('lang', config('app.locale')));
         return $next($request);
     }
 }
