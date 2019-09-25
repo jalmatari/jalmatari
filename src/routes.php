@@ -8,20 +8,19 @@ Route::get("artisan/{name}", [ 'as' => 'artisan', 'uses' => 'Jalmatari\Http\Cont
 $middlewares = Funs::MainRoutes(true);
 
 foreach ($middlewares as $middleware => $routes)
-    Route::group([ "middleware" => [ 'web','Lang', $middleware ] ], function () use ($routes) {
+    Route::group([ "middleware" => [ 'web', 'Lang', $middleware ] ], function () use ($routes) {
         foreach ($routes as $route)
             Funs::AddRoute($route);
     });
 
 
-Route::any('jalmatari/elfinder-connector', [
-    "middleware" => [ 'web','Lang','AdminAuth' ],
-    'uses'       => function () {
-        include public_path('jalmatari/plugins/jalmatari/php/connector.php');
-    }
-]);
+Route::group([ 'prefix' => 'jalmatari/', 'as' => 'jalmatari.', "middleware" => [ 'web', 'Lang', 'auth', 'AdminAuth' ] ], function () {
+    $nameSpace = 'Jalmatari\Http\Controllers\Admin\AdminController@';
+    Route::any('elfinder/connector', [ 'as' => 'elfinder.connector', 'uses' => $nameSpace . 'elfinderConnector' ]);
+    Route::any('elfinder/ckeditor', [ 'as' => 'elfinder.ckeditor', 'uses' => $nameSpace . 'elfinderCkeditor' ]);
+});
 
 //Auth routes
-Route::group([ 'namespace' => 'Jalmatari\Http\Controllers', "middleware" => [ 'web','Lang' ] ], function () {
+Route::group([ 'namespace' => 'Jalmatari\Http\Controllers', "middleware" => [ 'web', 'Lang' ] ], function () {
     Auth::routes();
 });

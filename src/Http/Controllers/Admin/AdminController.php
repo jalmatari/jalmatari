@@ -85,4 +85,14 @@ class AdminController extends MyBaseController
         return back()->with('alert', 'Cache cleared');
     }
 
+    public function elfinderConnector()
+    {
+        include public_path('jalmatari/plugins/jalmatari/php/connector.php');
+    }
+
+    public function elfinderCkeditor()
+    {
+        return view('helpers.ckeditor');
+    }
+
 }

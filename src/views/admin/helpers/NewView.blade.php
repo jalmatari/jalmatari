@@ -4,8 +4,8 @@
     <link href="{{url('/')}}/jalmatari/plugins/iCheck/all.css" rel="stylesheet" type="text/css">
     <script src='{{url('/')}}/jalmatari/plugins/iCheck/icheck.min.js'></script>
     <script>
-        if(typeof fileManagerUrl == "undefined" )
-            fileManagerUrl='{{$name}}';
+        if (typeof fileManagerUrl == "undefined")
+            fileManagerUrl = '{{$name}}';
         $(function () {
             $('#status').removeAttr('required');
             $('input[required]:not([type="hidden"])').before('<strong class="text-red"> *</strong>');
@@ -20,42 +20,16 @@
                 autoclose: true
             });
 
-                $('#editor,.editor').each(function () {
-                    inputId=$(this).attr('id');
-                    CKEDITOR.replace(inputId, {
-                        language: 'ar'
-                    });
-
-                    $('#'+inputId).after(function () {
-                        return '<a id="'+inputId+'-img-btn" data-editor="'+inputId+'"  class="btn btn-primary"> إضافة صورة</a>';
-                    });
-                    $('#'+inputId+'-img-btn').click(fileManager2);
+            $('#editor,.editor').each(function () {
+                inputId = $(this).attr('id');
+                CKEDITOR.replace(inputId, {
+                    language: 'ar',
+                    filebrowserBrowseUrl: '{{route_('jalmatari.elfinder.ckeditor')}}'
                 });
 
-            function fileManager2(e) {
-                editorName=$(this).data('editor');
-                $('<div id="fileManagerPanel" />').dialogelfinder({
-                    lang: 'ar',             // language (OPTIONAL)
-                    url: '{{url('jalmatari/elfinder-connector')}}'+ (typeof fileManagerUrl == "undefined" ? '' : '?url=' + fileManagerUrl),
-                    width: '80%',
-                    height: '600px',
-                    dateFormat: 'Y-m-d',
-                    customData:_globalObj,
-                    getFileCallback: function (file) {
-                        CKEDITOR.instances[editorName].insertHtml('<img src="' + file.url + '" />');
-                        $('.dialogelfinder').remove();
-                    }
-                });
-                return false;
-            }
+            });
         });
     </script>
-    <style>
-
-    #fileManagerPanel {
-        z-index: 810;
-    }
-</style>
 @stop
 @section('body')
     @if(isset($include_view))
@@ -95,7 +69,8 @@
                     echo Funs::Form($row['type'], [ $key, $row['data'], $row['other'] ]);
                 else:
                 ?>
-                <div class="form-group {{$key.'-form-row '.(in_array($row['type'],['textarea','json'])?"col-md-12":"col-md-6")}}">
+                <div
+                    class="form-group {{$key.'-form-row '.(in_array($row['type'],['textarea','json'])?"col-md-12":"col-md-6")}}">
                     {!!Funs::Form('label',[$key, $row['title'] . ":"])!!}
                     @if($row['type']=='checkbox')
                         {!!Funs::Form('checkbox',[$key, "",$row['data'], $row['other']])!!}
