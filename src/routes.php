@@ -14,7 +14,7 @@ foreach ($middlewares as $middleware => $routes)
     });
 
 
-Route::any('jalmatari/plugins/jalmatari/php/connector.php', [
+Route::any('jalmatari/elfinder-connector', [
     "middleware" => [ 'web','Lang','AdminAuth' ],
     'uses'       => function () {
         include public_path('jalmatari/plugins/jalmatari/php/connector.php');

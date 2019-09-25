@@ -25,7 +25,7 @@ $(document).ready(function () {
 
         $('<div id="fileManagerPanel" />').dialogelfinder({
             lang: 'ar',             // language (OPTIONAL)
-            url: '/jalmatari/plugins/jalmatari/php/connector.php'+ (typeof fileManagerUrl == "undefined" ? '' : '?url=' + fileManagerUrl),
+            url: '/jalmatari/elfinder-connector'+ (typeof fileManagerUrl == "undefined" ? '' : '?url=' + fileManagerUrl),
             width: '80%',
             height: '600px',
             dateFormat: 'Y-m-d',
