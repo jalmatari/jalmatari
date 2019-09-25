@@ -18,6 +18,8 @@ Route::group([ 'prefix' => 'jalmatari/', 'as' => 'jalmatari.', "middleware" => [
     $nameSpace = 'Jalmatari\Http\Controllers\Admin\AdminController@';
     Route::any('elfinder/connector', [ 'as' => 'elfinder.connector', 'uses' => $nameSpace . 'elfinderConnector' ]);
     Route::any('elfinder/ckeditor', [ 'as' => 'elfinder.ckeditor', 'uses' => $nameSpace . 'elfinderCkeditor' ]);
+
+    Route::get('documentation',['as'=>'documentation','uses'=>$nameSpace.'documentation']);
 });
 
 //Auth routes

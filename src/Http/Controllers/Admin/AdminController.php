@@ -6,6 +6,7 @@ use Auth;
 use AutoController;
 use Input;
 use Jalmatari\Http\Controllers\Core\MyBaseController;
+use Jalmatari\Models\tables;
 use Redirect;
 use View;
 
@@ -93,6 +94,13 @@ class AdminController extends MyBaseController
     public function elfinderCkeditor()
     {
         return view('helpers.ckeditor');
+    }
+
+    public function documentation()
+    {
+        $tables = tables::all();
+
+        return view('helpers.documentation', [ 'tables' => $tables]);
     }
 
 }

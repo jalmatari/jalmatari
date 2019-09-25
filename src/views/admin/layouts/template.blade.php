@@ -85,7 +85,7 @@
     <![endif]-->
     <style type="text/css">
         @yield('style')
-        @if(request('show-in-modal')==1)
+        @if(request('show-in-modal')==1||isset($showContentOnly))
 
             .main-header, .main-sidebar, .main-footer, .content-header, .box-header {
             display: none !important;
