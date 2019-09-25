@@ -61,7 +61,7 @@
                     <div class="form-group {{'form_row_'.$row['name'].' '.$class_hidden}}">
 
                         @if ($row['type'] != "hidden")
-                            {!! Form::label($row['name'],$row['desc'].":") !!}
+                            {!! Form::label($row['name'],__($row['desc']).":") !!}
                         @endif
                         @if ($row['type'] == "checkbox")
                             {!! Form::{$row['type']}($row['name'],"",($row['value']==1)) !!}
