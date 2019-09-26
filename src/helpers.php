@@ -82,3 +82,27 @@ if (!function_exists('deleted_user')) {
         ];
     }
 }
+
+
+//Generate fake User object as Deleted user
+if (!function_exists('j_config')) {
+    /**
+     * Get / set the specified configuration value.
+     *
+     * If an array is passed as the key, we will assume you want to set an array of values.
+     *
+     * @param array|string|null $key
+     * @param mixed $default
+     * @return mixed|\Illuminate\Config\Repository
+     */
+    function j_config($key = null, $default = null)
+    {
+        if (!is_null($key) && !is_array($key))
+            $key = 'jalmatari.' . $key;
+        $config = config($key, $default);
+        if (is_null($config))
+            Funs::Abort(500,__('Jalmatari Config File is not Exists!').'<a href="/">'.__('Go Home').'</a>');
+
+        return config($key, $default);
+    }
+}

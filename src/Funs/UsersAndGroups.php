@@ -95,6 +95,7 @@ trait UsersAndGroups
 
         }
         $html .= '</div> <div class="h4  text-blue">صلاحيات خاصة :</div><hr>';
+        dd(j_config('permissions'));
         $specialPermissions = config('jalmatari.permissions');
         foreach ($specialPermissions as $permission => $title) {
             $disabled = false;

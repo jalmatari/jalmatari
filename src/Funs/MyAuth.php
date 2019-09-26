@@ -99,14 +99,9 @@ trait MyAuth
             http_response_code($statusCode);
             $title = $statusTexts[ $statusCode ];
             $message = str_replace('#home', '<a href="/">Go Home</a>', $message);
-            $data = [
-                'title'      => $title,
-                'code'       => $code,
-                'message'    => $message,
-                'statusCode' => $statusCode
-            ];
+            view()->share('title', $title);
+            throw new \Exception($message, $statusCode);
 
-            die(view('Funs::errors.error', $data)->render());
         }
 
     }

@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Jalmatari\Funs\Funs;
+use Jalmatari\Models\errors;
 
 class JalmatariHandler extends ExceptionHandler
 {
@@ -28,7 +29,7 @@ class JalmatariHandler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception $exception
+     * @param \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -40,8 +41,8 @@ class JalmatariHandler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Exception $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception $exception
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
@@ -50,32 +51,57 @@ class JalmatariHandler extends ExceptionHandler
 
         $e_name = explode('\\', get_class($exception));
         $e_name = $e_name[ count($e_name) - 1 ];
-        
+
         $this->isJalmatariTablesMissing($exception->getMessage());
-        $showErrors = \Schema::hasTable('settings') && !Funs::BoolSetting('show_errors');
-        if (!in_array($request->path(), [ 'register' ]) && $showErrors) {
+        $showErrors = \Schema::hasTable('settings') && Funs::BoolSetting('show_errors');
+
+        if (!in_array($request->path(), [ 'register' ]) && !$showErrors) {
 
             $e_name = explode('\\', get_class($exception));
             $e_name = $e_name[ count($e_name) - 1 ];
-            $rendered_page = parent::render($request, $exception);
-            errors::insert(
-                [
-                    'user_id'        => auth()->check() ? auth()->user()->id : 0,
-                    'request'        => $request,
-                    'rendered_page'  => $rendered_page->original,
-                    'exception'      => $exception,
-                    'exception_name' => $e_name,
-                    'url'            => urldecode($request->fullUrl()),
-                    'exception_msg'  => $exception->getMessage()
-                ]
-            );
-            $error = errors::all()->last();
+            $isNotFondError = $e_name == 'NotFoundHttpException';
+            $errorCode = $isNotFondError ? 404 : 500;
+
+
+            $rendered_page = parent::render($request, $exception)->original;
+            $msg = $exception->getMessage();
+            $exception = 1;
+            $url = urldecode($request->fullUrl());
+
+            if (!$isNotFondError) {
+                $msgstrPos = strpos($msg, '(');
+                if ($msgstrPos > 1)
+                    $msg = substr($msg, 0, $msgstrPos);
+            }
+            $errorMesg = $errorCode . ': ' . $msg;
+            $error = errors::where([ 'url' => $url, 'exception_name' => $e_name, 'exception_msg' => $errorMesg ])->first();
+            if ($error) {
+                $error->exception = (int) $error->exception + 1;
+                $error->status = 0;
+                $error->save();
+            }
+            else {
+                errors::insert(
+                    [
+                        'user_id'        => auth()->check() ? auth()->id() : 0,
+                        'request'        => $request,
+                        'rendered_page'  => $rendered_page,
+                        'exception'      => $exception,
+                        'exception_name' => $e_name,
+                        'url'            => $url,
+                        'exception_msg'  => $errorMesg
+                    ]
+                );
+                $error = errors::orderBy('id', 'desc')->first();
+            }
             $data = [
-                'error'      => $error,
-                'error_name' => $e_name,
+                'errorNo' => $error->id,
+                'code'    => $errorCode
             ];
-            $view = view('error', $data)->render();
-            header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
+            if (!$isNotFondError)
+                $data['message'] = $e_name . ': ' . $msg;
+            $view = view('errors.error', $data)->render();
+            header($_SERVER['SERVER_PROTOCOL'] . $isNotFondError ? ' 404 Not Found' : ' 500 Internal Server Error', true, $errorCode);
             die($view);
         }
 
@@ -115,15 +141,13 @@ class JalmatariHandler extends ExceptionHandler
             $this->showTableError($tables);
 
 
-
-
         return $isMissing;
     }
 
     public function showTableError($tables)
     {
         $data = [
-            'title'   => 'Error - Tables not Exists',
+            'title'  => 'Error - Tables not Exists',
             'tables' => $tables
         ];
         http_response_code(501);
@@ -134,8 +158,8 @@ class JalmatariHandler extends ExceptionHandler
     /**
      * Convert an authentication exception into an unauthenticated response.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Illuminate\Auth\AuthenticationException $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Auth\AuthenticationException $exception
      * @return \Illuminate\Http\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
