@@ -4,6 +4,7 @@ namespace Jalmatari\Http\Controllers\Core;
 
 use Auth;
 use AutoController;
+use Carbon\Carbon;
 use HTML;
 use Jalmatari\Funs\Funs;
 use Jalmatari\JalmatariServiceProvider;
@@ -140,7 +141,10 @@ class MyBaseController extends Controller
             else if (in_array($tableCol, [ 'created_at', 'updated_at' ]))
                 $tableCols[ $key ] = [
                     $tableCol,
-                    'code' => 'static::convertHijri($d)'
+                    'formatter' => function ($date) {
+
+                        return Funs::Date($date);
+                    }
                 ];
             else if ($tableCol == "user_id")
                 $tableCols[ $key ] = [

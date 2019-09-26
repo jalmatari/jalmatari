@@ -103,13 +103,13 @@ class TablesController extends MyBaseController
         $msg = "<br>Controller: " . $this->genController($tableId)->getSession()->get('alert');
         $msg .= "<br>Model: " . $this->genMolel($tableId)->getSession()->get('alert');
         $msg .= "<br>Menues: " . $this->addTablesToMenus()->getSession()->get('alert');
+        cache()->clear();
 
         return redirect()->back()->with('alert', $msg);
     }
 
     public function genController($tableId)
     {
-
 
         $table = tables::find($tableId);
         $tableName = $table->name;

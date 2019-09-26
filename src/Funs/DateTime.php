@@ -2,6 +2,8 @@
 
 namespace Jalmatari\Funs;
 
+use Carbon\Carbon;
+
 trait DateTime
 {
 
@@ -36,8 +38,8 @@ trait DateTime
 
     public static function GetHjriDate($date, $day = true, $month = true, $year = true, $withTime = false)
     {
-        $final_date=$date;
-        if(static::BoolSetting('hjri_data_convert')) {
+        $final_date = $date;
+        if (static::BoolSetting('hjri_data_convert')) {
             $datetime = new \DateTime($date);
             $hjri_data_adjust = (int) static::Setting('hjri_data_adjust');
             $datetime->modify($hjri_data_adjust . ' day');
@@ -70,8 +72,8 @@ trait DateTime
             if ($year) {
                 $final_date .= (($final_date != "") ? ' ' : '') . $y . 'هـ';
             }
-            $final_date=$final_date . ($withTime ? ' &nbsp; ' . $time : '');
-            $final_date=static::En2Ar($final_date);
+            $final_date = $final_date . ($withTime ? ' &nbsp; ' . $time : '');
+            $final_date = static::En2Ar($final_date);
         }
 
         return $final_date;
@@ -341,5 +343,12 @@ trait DateTime
         $datediff = $end_date - $start_date;
 
         return floor($datediff / 86400);//(60 * 60 * 24)
+    }
+
+    public static function Date($date)
+    {
+        $date=Carbon::parse($date);
+
+        return $date->isoFormat('DD-MMMM-Y');
     }
 }
