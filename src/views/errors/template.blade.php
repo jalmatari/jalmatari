@@ -105,8 +105,21 @@
         <div class="code">{{$code??500}}</div>
         <div class="message" style="padding: 10px;">No.<strong>{!! $errorNo??'000' !!}</strong></div>
     </div>
-    <div>{!! $message??'' !!}</div>
+    <div id="message" style="display: none">{!! $message??'' !!}</div>
+    <div>&nbsp;</div>
+    <div>
+        <a href="{{session()->previousUrl()}}">@lang('Go Back')</a>
+        <a href="/">@lang('Go Home')</a>
+    </div>
 </div>
+<script>
 
+    document.addEventListener('keyup', (e) => {
+        console.log(e.code);
+        if (e.code === "KeyJ")
+            document.getElementById('message').style.display='flex';
+
+    });
+</script>
 </body>
 </html>

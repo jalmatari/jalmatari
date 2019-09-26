@@ -136,7 +136,7 @@ trait TablesSourceFuns
     public static function fun_get_special_permissions_fileds($name, $text)
     {
 
-        $specialPermissions = config('jalmatari.permissions');
+        $specialPermissions = j_config('permissions');
         $html = '<div class="permissions_fileds  col-md-12">'
             . '<div class="box-header  with-border"></div>';
         $permissions = json_decode($text);

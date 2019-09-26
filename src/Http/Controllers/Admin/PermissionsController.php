@@ -60,7 +60,7 @@ class PermissionsController extends MyBaseController
 
     public function getData($data = [])
     {
-        $special_permissions = config('jalmatari.permissions');
+        $special_permissions = j_config('permissions');
         $data = [
             'permissions' => [
                 'permissions',

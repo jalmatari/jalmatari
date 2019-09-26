@@ -20,6 +20,8 @@ Route::group([ 'prefix' => 'jalmatari/', 'as' => 'jalmatari.', "middleware" => [
     Route::any('elfinder/ckeditor', [ 'as' => 'elfinder.ckeditor', 'uses' => $nameSpace . 'elfinderCkeditor' ]);
 
     Route::get('documentation',['as'=>'documentation','uses'=>$nameSpace.'documentation']);
+
+    Route::get('publish/config',['as'=>'publish.config','uses'=>$nameSpace.'publishConfig']);
 });
 
 //Auth routes

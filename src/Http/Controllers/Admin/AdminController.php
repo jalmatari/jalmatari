@@ -2,6 +2,7 @@
 
 namespace Jalmatari\Http\Controllers\Admin;
 
+use Artisan;
 use Auth;
 use AutoController;
 use Input;
@@ -100,7 +101,19 @@ class AdminController extends MyBaseController
     {
         $tables = tables::all();
 
-        return view('helpers.documentation', [ 'tables' => $tables]);
+        return view('helpers.documentation', [ 'tables' => $tables ]);
+    }
+
+    public function publishConfig()
+    {
+        $msg = 'Copied File [/vendor/jalmatari/jalmatari/src/config.php] To [/config/jalmatari.php]';
+        $config = config('jalmatari');
+        if (is_null($config))
+            Artisan::call('vendor:publish --tag jalmatari-config');
+        else
+            $msg = 'Jalmatari Config file is existed before!';
+
+        return back()->with('alert', $msg);
     }
 
 }
