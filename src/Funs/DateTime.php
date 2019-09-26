@@ -348,7 +348,11 @@ trait DateTime
     public static function Date($date)
     {
         $date=Carbon::parse($date);
+        $format='ll';
 
-        return $date->isoFormat('DD-MMMM-Y');
+        if(!is_null(setting('dateFormat')))
+            $format=Funs::FirstSetting('dateFormat');
+
+        return $date->isoFormat($format);
     }
 }
