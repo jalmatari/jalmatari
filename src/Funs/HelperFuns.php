@@ -40,6 +40,7 @@ trait HelperFuns
     public static function StripStr($str, $strLen = 0, $addTxt = '')
     {
         $str = strip_tags($str);
+        $str = preg_replace('!\s+!', ' ', $str);
         if ($strLen != 0 && mb_strlen($str) > $strLen) {
             $str = mb_substr($str, 0, $strLen) . '...' . $addTxt;
         }
@@ -594,7 +595,7 @@ trait HelperFuns
 
         $total = $paginator->total();
         $html = '<div class="pagination-btns">' . $paginator->appends($append)->links() . '</div>
-                 <div class="pagination-results-text">'.__('Show From :first to :last Of Total :total',['first'=>$first,'last'=>$last,'total'=>$total]).'</div>';
+                 <div class="pagination-results-text">' . __('Show From :first to :last Of Total :total', [ 'first' => $first, 'last' => $last, 'total' => $total ]) . '</div>';
         $paginateFooter = (object) [
             'last'  => $last,
             'first' => $first,
