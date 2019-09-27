@@ -1,12 +1,15 @@
 <?php
-$groups = [[
+$groups = [
+    [
         'name'   => 'مدراء النظام',
         'status' => 1,
         'ord'    => 0
-    ]];
+    ]
+];
 
 
-$menu = [[
+$menu = [
+    [
         'parent' => 0,
         'title'  => 'لوحة التحكم',
         'name'   => 'admin2',
@@ -122,10 +125,12 @@ $menu = [[
         'icon'   => 'fa-sitemap',
         'ord'    => 1,
         'status' => 0
-    ]];
+    ]
+];
 
 
-$permissions = [[
+$permissions = [
+    [
         'name'                => 'User',
         'permissions'         => '[]',
         'special_permissions' => '[]',
@@ -138,10 +143,12 @@ $permissions = [[
         'special_permissions' => '[\'log_with_user\',\'show_main_admin_icons\']',
         'ord'                 => 999,
         'status'              => 1
-    ]];
+    ]
+];
 
 
-$settings = [[
+$settings = [
+    [
         'name'    => 'settings_names',
         'desc'    => 'تسميات الإعدادات',
         'type'    => 'multi',
@@ -228,10 +235,20 @@ $settings = [[
         'value'   => '0',
         'status'  => 0,
         'section' => 'main'
-    ]];
+    ],
+    [
+        'name'    => 'dateFormat',
+        'desc'    => 'تنسيق الوقت عند العرض',
+        'type'    => 'list',
+        'value'   => '{"LL":"(LL) MMMM D, YYYY [January 5, 2017]","L":"(L) MM\/DD\/YYYY [01\/05\/2017]","LT":"(LT) h:mm A [5:04 PM]","LTS":"(LTS) h:mm:ss A [5:04:05 PM]","l":"(l) MM\/DD\/YYYY [1\/5\/2017]","ll":"(ll) MMMM D, YYYY [Jan 5, 2017]","LLL":"(LLL) MMMM D, YYYY h:mm A [January 5, 2017 5:04 PM]","lll":"(lll) MMMM D, YYYY h:mm A [Jan 5, 2017 5:04 PM]","LLLL":"(LLLL) dddd, MMMM D, YYYY h:mm A [Thursday, January 5, 2017 5:04 PM]","llll":"(llll) dddd, MMMM D, YYYY h:mm A [Thu, Jan 5, 2017 5:04 PM]"}',
+        'status'  => 1,
+        'section' => 'main'
+    ]
+];
 
 
-$tables = [[
+$tables = [
+    [
         'name'         => 'errors',
         'title'        => 'الأخطاء البرمجية',
         'new'          => 'إضافة خطأ جديد',
@@ -347,10 +364,12 @@ $tables = [[
         'status'       => 1,
         'show_add_btn' => 1,
         'namespace'    => 'Jalmatari\\Models\\'
-    ]];
+    ]
+];
 
 
-$tables_cols = [[
+$tables_cols = [
+    [
         'ID'               => 1,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
@@ -2599,10 +2618,12 @@ $tables_cols = [[
         'STATUS'           => 0,
         'SHOW_IN_LIST'     => 0,
         'TABLE_ID'         => 13
-    ]];
+    ]
+];
 
 
-$users = [[
+$users = [
+    [
         'api_token'         => 'zI1UE9EhcuqvCt3HKpBSjLiIMuxGHAU0OpTjvEsw3xL5YB6YwQYSL85Fjk35',
         'created_by_app'    => 0,
         'name'              => 'مدير النظام',
@@ -2618,16 +2639,20 @@ $users = [[
         'email_verified_at' => null,
         'city'              => 'الرياض',
         'country'           => 'السعودية'
-    ]];
+    ]
+];
 
 
-$users_groups = [[
+$users_groups = [
+    [
         'user_id'  => 1,
         'group_id' => 1
-    ]];
+    ]
+];
 
 
-$controllers = [[
+$controllers = [
+    [
         'name'       => 'AdminController',
         'title'      => '',
         'namespace'  => 'Jalmatari\\Http\\Controllers\\Admin',
@@ -2722,10 +2747,12 @@ $controllers = [[
         'url_prefix' => 'routes',
         'table_id'   => 13,
         'status'     => 1
-    ]];
+    ]
+];
 
 
-$routes = [[
+$routes = [
+    [
         'type'          => 0,
         'middleware'    => 'AdminAuth',
         'controller_id' => 7,
@@ -2895,8 +2922,8 @@ $routes = [[
         'route'         => 'clearCache',
         'id_required'   => 0,
         'status'        => 1
-    ]];
-
+    ]
+];
 
 
 dd($groups,
