@@ -2,28 +2,29 @@
 
 namespace Jalmatari\Http\Controllers\Core;
 
+use DB;
+use Jalmatari\Funs\Funs;
 use Jalmatari\Models\sync;
 use Jalmatari\Models\users;
 use Jalmatari\User;
-use DB;
-use Jalmatari\Funs\Funs;
 use Password;
 use Schema;
 
 
 class AppController extends MyBaseController
 {
-    public $allAbleTables = [
-        "users",
-        "sync",
-    ];
+
+    public function allowableTables()
+    {
+        return j_config('api.allowable_tables');
+    }
 
     public function getSection()
     {
         $section = request('section');
         if (!$section)
             $header = 'No section provided!';
-        else if (!in_array($section, $this->allAbleTables))
+        else if (!in_array($section, $this->allowableTables()))
             $header = 'There Is No section With This Name!';
         else
             return $section;
@@ -51,7 +52,7 @@ class AppController extends MyBaseController
         if ($section == "users")
             $table = $table->select('id', 'name', 'show_name');
         if ($section == "sync")
-            $table = $table->whereIn('table', $this->allAbleTables);
+            $table = $table->whereIn('table', $this->allowableTables());
         $updated = request('updated');
         if ($updated) {
             $ids = sync::where('table', $section)
@@ -142,12 +143,12 @@ class AppController extends MyBaseController
     public function sectionsWithNewData()
     {
         $sections = [];
-        $onlyTables = $this->allAbleTables;
+        $onlyTables = $this->allowableTables();
         if (request()->has('only')) {
             $onlyTables = explode(',', request('only'));
             $onlyTables[] = "sync";
         }
-        foreach ($this->allAbleTables as $table) {
+        foreach ($this->allowableTables() as $table) {
             if (in_array($table, $onlyTables)) {
                 $count = 0;
                 if (request()->has('updated')) {
@@ -569,12 +570,15 @@ class AppController extends MyBaseController
         }
         $data = compact('visits', 'userShareMsg', 'userShareName',
             'userLink', 'isUserSharePage', 'otherUserShareMsg',
-            'otherUserShareName', 'appShare','userId');
+            'otherUserShareName', 'appShare', 'userId');
 
         return view('app', $data);
     }
-    public function visitStore(){
-        visits::VisitUser(request('user'),request('type'));
+
+    public function visitStore()
+    {
+        visits::VisitUser(request('user'), request('type'));
+
         return request('url');
     }
 
