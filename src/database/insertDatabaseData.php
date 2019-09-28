@@ -2922,6 +2922,15 @@ $routes = [
         'route'         => 'clearCache',
         'id_required'   => 0,
         'status'        => 1
+    ],
+    [
+        'type'          => 0,
+        'middleware'    => 'PublicAuth',
+        'controller_id' => 10,
+        'action'        => 'api',
+        'route'         => 'app.api',
+        'id_required'   => 0,
+        'status'        => 1
     ]
 ];
 
