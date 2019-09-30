@@ -83,6 +83,17 @@ if (!function_exists('deleted_user')) {
     }
 }
 
+//Get assets with last version query at end of the link
+if (!function_exists('j_asset')) {
+    function j_asset($path, $secure = null)
+    {
+        $url=asset($path, $secure);
+        if(strpos($url,'?')===false)
+            url.='?ver='.setting('ver')??'0.1';
+        return url;
+    }
+}
+
 
 //Generate fake User object as Deleted user
 if (!function_exists('j_config')) {
