@@ -2,8 +2,6 @@
 
 namespace Jalmatari\Http\Controllers\Core;
 
-use Jalmatari\Funs\Funs;
-
 
 class APIController extends MyBaseController
 {
@@ -20,9 +18,16 @@ class APIController extends MyBaseController
         return response()->json($data);
     }
 
-    function tdbrSourceList()
+    function gitUpgradeVersion()
     {
-        return Funs::AddKeyValueToArr(Funs::TdbrSourcesList());
+        $ver = setting('ver');
+        $ver = explode('.', $ver);
+        if (count($ver) == 1)
+            $ver = [ 0, $ver ];
+        $ver[1]++;
+        if ($ver[1] >= 10)
+            $ver = [ $ver[0] + 1, 0 ];
+        return setting('ver', implode('.', $ver))->value;
     }
 
 }

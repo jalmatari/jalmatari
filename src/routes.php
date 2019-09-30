@@ -19,12 +19,13 @@ Route::group([ 'prefix' => 'jalmatari/', 'as' => 'jalmatari.', "middleware" => [
     Route::any('elfinder/connector', [ 'as' => 'elfinder.connector', 'uses' => $nameSpace . 'elfinderConnector' ]);
     Route::any('elfinder/ckeditor', [ 'as' => 'elfinder.ckeditor', 'uses' => $nameSpace . 'elfinderCkeditor' ]);
 
-    Route::get('documentation',['as'=>'documentation','uses'=>$nameSpace.'documentation']);
+    Route::get('documentation', [ 'as' => 'documentation', 'uses' => $nameSpace . 'documentation' ]);
 
-    Route::get('publish/config',['as'=>'publish.config','uses'=>$nameSpace.'publishConfig']);
+    Route::get('publish/config', [ 'as' => 'publish.config', 'uses' => $nameSpace . 'publishConfig' ]);
 });
 
 //Auth routes
 Route::group([ 'namespace' => 'Jalmatari\Http\Controllers', "middleware" => [ 'web', 'Lang' ] ], function () {
     Auth::routes();
+    Route::any('api/git/upgrade', [ 'as' => 'api.git.upgrade', 'uses' => 'Core\APIController@gitUpgradeVersion' ]);
 });
