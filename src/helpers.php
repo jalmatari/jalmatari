@@ -90,7 +90,7 @@ if (!function_exists('j_asset')) {
         $url=asset($path, $secure);
         if(strpos($url,'?')===false)
             $url.='?ver='.setting('ver')??'0.1';
-        return url;
+        return $url;
     }
 }
 
