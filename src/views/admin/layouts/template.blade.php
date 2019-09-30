@@ -142,7 +142,7 @@
 
     <footer class="main-footer">
         <div class="pull-left hidden-xs">
-            <b>الإصدار </b> 0.1
+            <b>الإصدار </b> {{setting('ver')??'0.1'}}
         </div>
         <small>{{ microtime(true) - session('startMicroTime') }}</small>
         <!--strong>By: <a href="#">Company <span class="text-yellow">Name</span> Tech</a>.</strong-->
