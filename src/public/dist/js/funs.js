@@ -96,7 +96,7 @@ function addChosenSelect(selector) {
         selector = '';
     }
     $(selector + " select:not(.un-advanced-select)").chosen("destroy");
-    $('.chosen-container').remove();
+    $(selector +' .chosen-container').remove();
     $(selector + " select:not(.un-advanced-select)").addClass('chosen-rtl');
     $(selector + " select:not(.un-advanced-select)").chosen({
         no_results_text: "لا يوجد عنصر مطابق لـ:",
