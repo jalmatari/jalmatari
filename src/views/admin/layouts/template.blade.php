@@ -13,77 +13,62 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 
-    <script type="text/javascript">
+    <script>
             {!! 'var _globalObj = '.  json_encode(['_token' => csrf_token()]).';' !!}
         var _globalUrl = '{{url('/')}}';
     </script>
-    <!-- jQuery 2.1.4 -->
-    <script src="{{url('/')}}/jalmatari/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.2 JS -->
-    <script src="{{url('/')}}/jalmatari/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- FastClick -->
-    <script src='{{url('/')}}/jalmatari/plugins/fastclick/fastclick.min.js'></script>
-    <!-- AdminLTE App -->
-    <script src="{{url('/')}}/jalmatari/dist/js/app.min.js" type="text/javascript"></script>
+    <script src="{{url('jalmatari/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+    <script src="{{url('jalmatari/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{url('jalmatari/plugins/fastclick/fastclick.min.js')}}"></script>
+    <script src="{{url('jalmatari/dist/js/app.min.js')}}"></script>
 
     <script src="{{asset('jalmatari/dist/js/lodash.core.min.js')}}"></script>
     <script src="{{asset('jalmatari/dist/js/jamalFuns.js')}}"></script>
 
 
-    <script src='{{url('/')}}/jalmatari/plugins/moment/moment-with-locales.min.js'></script>
-    <link href="{{url('/')}}/jalmatari/plugins/iCheck/all.css" rel="stylesheet" type="text/css">
-    <script src='{{url('/')}}/jalmatari/plugins/iCheck/icheck.min.js'></script>
+    <script src='{{url('jalmatari/plugins/moment/moment-with-locales.min.js')}}'></script>
+    <link href="{{url('jalmatari/plugins/iCheck/all.css')}}" rel="stylesheet">
+    <script src='{{url('jalmatari/plugins/iCheck/icheck.min.js')}}'></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{url('/jalmatari/plugins/jQueryUI/jquery-ui.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('/')}}/jalmatari/dist/js/demo.js" type="text/javascript"></script>
-    <script src="{{url('/')}}/jalmatari/dist/js/funs.js"></script>
-    <script src="{{url('/')}}/jalmatari/plugins/noty/packaged/jquery.noty.packaged.min.js"></script>
+    <script src="{{url('/jalmatari/plugins/jQueryUI/jquery-ui.min.js')}}"></script>
+    <script src="{{url('jalmatari/dist/js/demo.js')}}"></script>
+    <script src="{{url('jalmatari/dist/js/funs.js')}}"></script>
+    <script src="{{url('jalmatari/plugins/noty/packaged/jquery.noty.packaged.min.js')}}"></script>
 
-    <script type="text/javascript" src="{{url('/')}}/jalmatari/plugins/jalmatari/js/elfinder.min.js"></script>
-    <script type="text/javascript" src="{{url('/')}}/jalmatari/plugins/chosen/chosen.jquery.min.js"></script>
-    <script type="text/javascript" src="{{url('/')}}/jalmatari/plugins/chosen/chosen.proto.min.js"></script>
-    <!-- Mac OS X Finder style for jQuery UI smoothness theme (OPTIONAL) -->
-
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="{{url('/')}}/jalmatari/plugins/jalmatari/css/elfinder.min.css">
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="{{url('/')}}/jalmatari/dist/css/animate.css">
-    <?php /*<link rel="stylesheet" type="text/css" media="screen"
+    <script src="{{url('jalmatari/plugins/jalmatari/js/elfinder.min.js')}}"></script>
+    <script src="{{url('jalmatari/plugins/chosen/chosen.jquery.min.js')}}"></script>
+    <script src="{{url('jalmatari/plugins/chosen/chosen.proto.min.js')}}"></script>
+    <link rel="stylesheet" href="{{url('jalmatari/plugins/jalmatari/css/elfinder.min.css')}}">
+    <link rel="stylesheet" href="{{url('jalmatari/dist/css/animate.css')}}">
+    <?php /*<link rel="stylesheet" media="screen"
           href="https://code.jquery.com/ui/1.11.4/themes/pepper-grinder/jquery-ui.css"/>*/?>
-    <link href="{{url('/jalmatari/plugins/jQueryUI/jquery-ui.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{url('/jalmatari/plugins/jQueryUI/jquery-ui.structure.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{url('/jalmatari/plugins/jQueryUI/jquery-ui.min.css')}}" rel="stylesheet"/>
+    <link href="{{url('/jalmatari/plugins/jQueryUI/jquery-ui.structure.min.css')}}" rel="stylesheet"/>
 
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="{{url('/')}}/jalmatari/plugins/jalmatari/css/theme.css">
-    <script type="text/javascript" src="{{url('/')}}/jalmatari/plugins/jalmatari/js/i18n/elfinder.ar.js"></script>
+    <link rel="stylesheet" href="{{url('jalmatari/plugins/jalmatari/css/theme.css')}}">
+    <script src="{{url('jalmatari/plugins/jalmatari/js/i18n/elfinder.ar.js')}}"></script>
 
     <!-- Bootstrap 3.3.4 -->
-    <link href="{{url('/')}}/jalmatari/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{url('jalmatari/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"/>
 
     <!-- Bootstrap RTL 3.2.0 -->
-    <link href="{{url('/')}}/jalmatari/dist/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css"/>
-    <link href="{{url('/')}}/jalmatari/dist/css/font-awesome/css/font-awesome.min.css" rel="stylesheet"
-          type="text/css"/>
+    <link href="{{url('jalmatari/dist/css/bootstrap-rtl.min.css')}}" rel="stylesheet"/>
+    <link href="{{url('jalmatari/dist/css/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet"/>
 
-    <!-- Font Awesome Icons -->
-    <link href="{{url('/')}}/jalmatari/plugins/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
-    <!-- Ionicons -->
-    <link href="{{url('/')}}/jalmatari/dist/css/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
-    <!-- Theme style -->
-    <link href="{{url('/')}}/jalmatari/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link href="{{url('/')}}/jalmatari/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{url('jalmatari/plugins/chosen/chosen.min.css')}}" rel="stylesheet"/>
+    <link href="{{url('jalmatari/dist/css/ionicons/css/ionicons.min.css')}}" rel="stylesheet"/>
+    <link href="{{url('jalmatari/dist/css/AdminLTE.min.css')}}" rel="stylesheet"/>
+    <link href="{{url('jalmatari/dist/css/skins/_all-skins.min.css')}}" rel="stylesheet"/>
 
-    <link href="{{url('/')}}/jalmatari/dist/css/rtl.css" rel="stylesheet" type="text/css"/>
-    <link href="{{url('/')}}/jalmatari/dist/css/styles.css" rel="stylesheet" type="text/css"/>
+    <link href="{{url('jalmatari/dist/css/rtl.css')}}" rel="stylesheet"/>
+    <link href="{{url('jalmatari/dist/css/styles.css')}}" rel="stylesheet"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="{{url('/')}}/jalmatari/dist/js/html5shiv.min.js"></script>
-    <script src="{{url('/')}}/jalmatari/dist/js/respond.min.js"></script>
+    <script src="{{url('jalmatari/dist/js/html5shiv.min.js')}}"></script>
+    <script src="{{url('jalmatari/dist/js/respond.min.js')}}"></script>
     <![endif]-->
-    <style type="text/css">
+    <style>
         @yield('style')
         @if(request('show-in-modal')==1||isset($showContentOnly))
 
@@ -175,7 +160,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<script type="text/javascript">
+<script>
     $(function () {
 
         @if(request('show-in-modal')==1)
