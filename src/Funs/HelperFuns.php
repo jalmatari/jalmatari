@@ -40,6 +40,7 @@ trait HelperFuns
     public static function StripStr($str, $strLen = 0, $addTxt = '')
     {
         $str = strip_tags($str);
+        $str = str_replace('&nbsp;', ' ', $str);
         $str = preg_replace('!\s+!', ' ', $str);
         if ($strLen != 0 && mb_strlen($str) > $strLen) {
             $str = mb_substr($str, 0, $strLen) . '...' . $addTxt;
