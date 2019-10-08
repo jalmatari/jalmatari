@@ -3,10 +3,83 @@
     <script src='{{url('/')}}/jalmatari/plugins/ckeditor/ckeditor.js'></script>
     <link href="{{url('/')}}/jalmatari/plugins/iCheck/all.css" rel="stylesheet" type="text/css">
     <script src='{{url('/')}}/jalmatari/plugins/iCheck/icheck.min.js'></script>
+    <style>
+        .ui-datepicker-title > select {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            margin: 2px 2px !important;
+        }
+
+    </style>
     <script>
+        let datepickerOptions = {
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            beforeShow: function (input, inst) {
+                // Handle calendar position before showing it.
+                // It's not supported by Datepicker itself (for now) so we need to use its internal variables.
+                var calendar = inst.dpDiv;
+                // Dirty hack, but we can't do anything without it (for now, in jQuery UI 1.8.20)
+                setTimeout(function () {
+                    calendar.css('z-index', '1030')
+                    if ($(input).offset().top >= 300)//only if the input not on the top the page
+                    {
+                        calendar.position({
+                            my: 'left bottom',
+                            at: 'left top',
+                            collision: 'none',
+                            of: input
+                        });
+                    }
+                }, 1);
+            }
+        };
+
+
         if (typeof fileManagerUrl == "undefined")
             fileManagerUrl = '{{$name}}';
         $(function () {
+
+            (function (factory) {
+                if (typeof define === "function" && define.amd) {
+
+                    // AMD. Register as an anonymous module.
+                    define(["../widgets/datepicker"], factory);
+                } else {
+
+                    // Browser globals
+                    factory(jQuery.datepicker);
+                }
+            }(function (datepicker) {
+
+                datepicker.regional.ar = {
+                    closeText: "إغلاق",
+                    prevText: "&#x3C;السابق",
+                    nextText: "التالي&#x3E;",
+                    currentText: "اليوم",
+                    monthNames: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
+                        "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
+                    monthNamesShort: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+                    dayNames: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"],
+                    dayNamesShort: ["أحد", "اثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"],
+                    dayNamesMin: ["أحد", "اثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"],
+                    weekHeader: "أسبوع",
+                    dateFormat: "dd/mm/yy",
+                    firstDay: 6,
+                    isRTL: true,
+                    showMonthAfterYear: false,
+                    yearSuffix: ""
+                };
+                datepicker.setDefaults(datepicker.regional.ar);
+
+                return datepicker.regional.ar;
+
+            }));
+
             $('#status').removeAttr('required');
             $('input[required]:not([type="hidden"])').before('<strong class="text-red"> *</strong>');
 
@@ -15,9 +88,18 @@
                 $('[name="' + name + '"][type="hidden"]').val($(this).iCheck('update')[0].checked ? 1 : 0)
             });
 
-            $('.datepicker').datepicker({
-                dateFormat: 'yy-mm-dd',
-                autoclose: true
+            $('.datepicker').datepicker(datepickerOptions);
+            $('.datepicker').each(function () {
+                if (!$(this).parent().is('.input-group')) {
+                    let groupId = "input-group-" + $(this).attr('id');
+                    $(this).before('<div class="input-group date" id="' + groupId + '"><div class="input-group-addon"> <i class="fa fa-calendar"></i> </div></div>')
+                    $('#' + groupId).append($(this));
+                    $('#' + groupId).click( function () {
+                        let theInput = $(this).find('input');
+                        if (!theInput.datepicker("widget").is(":visible"))
+                            theInput.focus();
+                    });
+                }
             });
 
             $('#editor,.editor').each(function () {
