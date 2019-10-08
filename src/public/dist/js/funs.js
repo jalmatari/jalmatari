@@ -95,8 +95,23 @@ function addChosenSelect(selector) {
     if (typeof selector === 'undefined') {
         selector = '';
     }
+
+    $(selector + " select.addable").on('chosen:ready',function(evt, params) {
+        let choElement=params.chosen;
+        let selElement=$(this);
+        choElement.container.bind('keyup', function (e) {
+            if (e.which === 13) {//If "Enter" Pressed
+                let searchedTxt=choElement.search_field.val();
+                let noResults=$(this).find(".chosen-results").children('li').hasClass('no-results');
+                if(noResults&&searchedTxt.length>=1) {
+                    selElement.append('<option value="'+searchedTxt+'" selected>* '+searchedTxt+'</option>');
+                    selElement.trigger("chosen:updated");
+                }
+            }
+        });
+    });
     $(selector + " select:not(.un-advanced-select)").chosen("destroy");
-    $(selector +' .chosen-container').remove();
+    $(selector + ' .chosen-container').remove();
     $(selector + " select:not(.un-advanced-select)").addClass('chosen-rtl');
     $(selector + " select:not(.un-advanced-select)").chosen({
         no_results_text: "لا يوجد عنصر مطابق لـ:",
@@ -104,16 +119,7 @@ function addChosenSelect(selector) {
         multiple_text: "أختر العناصر المطلوبة",
         search_contains: true
     });
-    $(selector +' .chosen-container').bind('keyup', function (e) {
-        if (e.which === 13) {//If "Enter" Pressed
-            searchedTxt=$(this).prev('select').data('chosen').search_field.val();
-            noResults=$(this).find(".chosen-results").children('li').hasClass('no-results');
-            if(noResults&&searchedTxt.length>=1) {
-                $(this).prev('select').append('<option value="'+searchedTxt+'" selected>* '+searchedTxt+'</option>');
-                $(this).prev('select').trigger("chosen:updated");
-            }
-        }
-    });
+
 }
 
 function alert(msg) {
