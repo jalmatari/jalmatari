@@ -4,7 +4,6 @@ namespace Jalmatari\Http\Controllers\Core;
 
 use Auth;
 use AutoController;
-use Carbon\Carbon;
 use HTML;
 use Jalmatari\Funs\Funs;
 use Jalmatari\JalmatariServiceProvider;
@@ -29,6 +28,53 @@ class MyBaseController extends Controller
     protected $customWhere = null;
     protected $settingsSection = 'main';
     protected $settingsViewFile = 'admin.settings.settings';
+    //private methods
+    protected $privateMethods = [
+        "__construct",
+        "getData",
+        "login_as",
+        "update",
+        "save",
+        "delete",
+        "api",
+        "init",
+        "index",
+        "add",
+        "edit",
+        "getDataWithWhere",
+        "publish",
+        "actionToMulti",
+        "view",
+        "ListView",
+        "middleware",
+        "getMiddleware",
+        "callAction",
+        "missingMethod",
+        "__call",
+        "authorize",
+        "authorizeForUser",
+        "parseAbilityAndArguments",
+        "normalizeGuessedAbilityName",
+        "authorizeResource",
+        "resourceAbilityMap",
+        "resourceMethodsWithoutModels",
+        "dispatch",
+        "dispatchNow",
+        "validateWith",
+        "validate",
+        "validateWithBag",
+        "withErrorBag",
+        "throwValidationException",
+        "buildFailedValidationResponse",
+        "formatValidationErrors",
+        "errorBag",
+        "getRedirectUrl",
+        "getValidationFactory",
+        "artisan",
+        "getMethods",
+        "settings",
+        "orderMenus"
+    ];
 
     public function __construct()
     {
@@ -225,62 +271,16 @@ class MyBaseController extends Controller
 
     public function getMethods()
     {
-        return array_diff(get_class_methods($this),$this->privateMethods);
+        return array_diff(get_class_methods($this), $this->privateMethods);
     }
 
 
     public function api()
     {
-        //private methods
-        $privateMethods = [
-            "__construct",
-            "getData",
-            "login_as",
-            "update",
-            "save",
-            "delete",
-            "api",
-            "init",
-            "index",
-            "add",
-            "edit",
-            "getDataWithWhere",
-            "publish",
-            "actionToMulti",
-            "view",
-            "ListView",
-            "middleware",
-            "getMiddleware",
-            "callAction",
-            "missingMethod",
-            "__call",
-            "authorize",
-            "authorizeForUser",
-            "parseAbilityAndArguments",
-            "normalizeGuessedAbilityName",
-            "authorizeResource",
-            "resourceAbilityMap",
-            "resourceMethodsWithoutModels",
-            "dispatch",
-            "dispatchNow",
-            "validateWith",
-            "validate",
-            "validateWithBag",
-            "withErrorBag",
-            "throwValidationException",
-            "buildFailedValidationResponse",
-            "formatValidationErrors",
-            "errorBag",
-            "getRedirectUrl",
-            "getValidationFactory",
-            "artisan",
-            "getMethods",
-            "settings",
-            "orderMenus"
-        ];
+
         $data = [];
         $ac = request('ac');
-        if (!in_array($ac, $privateMethods) && method_exists($this, $ac))
+        if (!in_array($ac, $this->privateMethods) && method_exists($this, $ac))
             $data = $this->{$ac}();//call the function
 
         if (session()->has('alert')) {
