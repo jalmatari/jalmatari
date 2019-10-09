@@ -223,6 +223,11 @@ class MyBaseController extends Controller
         return Funs::ListView($cols, $table, $view, $title, $other_view);
     }
 
+    public function getMethods()
+    {
+        return array_diff(get_class_methods($this),$this->privateMethods);
+    }
+
 
     public function api()
     {
@@ -268,7 +273,10 @@ class MyBaseController extends Controller
             "errorBag",
             "getRedirectUrl",
             "getValidationFactory",
-            "artisan"
+            "artisan",
+            "getMethods",
+            "settings",
+            "orderMenus"
         ];
         $data = [];
         $ac = request('ac');
