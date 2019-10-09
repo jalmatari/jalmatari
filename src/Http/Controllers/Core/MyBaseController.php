@@ -73,7 +73,8 @@ class MyBaseController extends Controller
         "artisan",
         "getMethods",
         "settings",
-        "orderMenus"
+        "orderMenus",
+        "generateArtisanTable"
     ];
 
     public function __construct()
