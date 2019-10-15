@@ -14,7 +14,7 @@ foreach ($middlewares as $middleware => $routes)
     });
 
 
-Route::group([ 'prefix' => 'jalmatari/', 'as' => 'jalmatari.', "middleware" => [ 'web', 'Lang', 'auth', 'AdminAuth' ] ], function () {
+Route::group([ 'prefix' => 'jalmatari/', 'as' => 'jalmatari.', "middleware" => [ 'web', 'Lang', 'auth'] ], function () {
     $nameSpace = 'Jalmatari\Http\Controllers\Admin\AdminController@';
     Route::any('elfinder/connector', [ 'as' => 'elfinder.connector', 'uses' => $nameSpace . 'elfinderConnector' ]);
     Route::any('elfinder/ckeditor', [ 'as' => 'elfinder.ckeditor', 'uses' => $nameSpace . 'elfinderCkeditor' ]);
