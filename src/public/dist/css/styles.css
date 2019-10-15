@@ -624,3 +624,7 @@ thead > tr > * {
     width: 100%;
     min-height: 100%;
 }
+
+.elfinder {
+    z-index: 810;
+}

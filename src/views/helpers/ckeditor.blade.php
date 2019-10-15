@@ -17,6 +17,14 @@
             width: '100%',
             height: '100%',
             dateFormat: 'Y-m-d',
+            ui:['toolbar', 'stat'],
+            uiOptions: {
+                // toolbar configuration
+                toolbar: [
+                    ['back', 'forward'],
+                    ['mkdir',  'upload']
+                ]
+            },
             resizable: false,
             {!! 'customData: '.  json_encode(['_token' => csrf_token()]).',' !!}
             getFileCallback: function (file, fm) {

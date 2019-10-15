@@ -30,6 +30,14 @@ $(document).ready(function () {
             height: '600px',
             dateFormat: 'Y-m-d',
             customData:_globalObj,
+            ui:['toolbar', 'stat'],
+            uiOptions: {
+                // toolbar configuration
+                toolbar: [
+                    ['back', 'forward'],
+                    ['mkdir',  'upload']
+                ]
+            },
             getFileCallback: function (file) {
                 var filePath = file; //file contains the relative url.
                 $('#' + $(e.toElement).data('btn_id')).val(filePath.url)
