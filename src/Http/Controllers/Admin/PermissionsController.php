@@ -36,8 +36,19 @@ class PermissionsController extends MyBaseController
             foreach ($arr['special_permissions'] as $key => $val)
                 $arr2[] = $key;
         $arr['special_permissions'] = json_encode($arr2, JSON_UNESCAPED_UNICODE);
-        if (Funs::SaveDataToTable($arr, null, request('id')) == '"Updated"')
-            return redirect()->route($this->mainRoute);
+        $tryToUnpublishAdmin = false;
+        if ($arr['id'] == 2 && $arr['status'] == 0) {
+            $arr['status'] = 1;
+            $tryToUnpublishAdmin = true;
+        }
+
+        if (Funs::SaveDataToTable($arr, null, request('id')) == '"Updated"') {
+            $returned = redirect()->route($this->mainRoute);
+            if ($tryToUnpublishAdmin)
+                $returned = $returned->with('alert', 'تم تعديل البيانات، لكن لم يتم إلغاء النشر، لإن ذلك سيسبب تعطيل مدير النظام!');
+
+            return $returned;
+        }
     }
 
 
