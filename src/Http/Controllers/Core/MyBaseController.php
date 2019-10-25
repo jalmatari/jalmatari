@@ -390,13 +390,13 @@ class MyBaseController extends Controller
                 $this->jalmatariDataTables = require JalmatariServiceProvider::path('database/insertDatabaseData.php');
 
             \Artisan::call('migrate --path ' . $path);
-            if (isset($this->jalmatariDataTables[ $fileName ]))
-                DB::table($fileName)->insert($this->jalmatariDataTables[ $fileName ]);
             //if it's Users or gorups table, generate users_groups table
             if (in_array($tableName, [ 'groups', 'users' ]))
                 $this->generateArtisanTable('users_groups');
-
+            if (isset($this->jalmatariDataTables[ $fileName ])) {
+                DB::table($fileName)->insert($this->jalmatariDataTables[ $fileName ]);
+                cache()->clear();
+            }
         }
     }
-
 }
