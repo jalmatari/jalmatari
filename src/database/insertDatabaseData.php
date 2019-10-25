@@ -370,7 +370,6 @@ $tables = [
 
 $tables_cols = [
     [
-        'ID'               => 1,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -388,7 +387,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 2,
         'COLUMN_NAME'      => 'user_id',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -406,7 +404,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 3,
         'COLUMN_NAME'      => 'request',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -424,7 +421,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 4,
         'COLUMN_NAME'      => 'rendered_page',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => null,
@@ -442,7 +438,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 5,
         'COLUMN_NAME'      => 'exception',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => null,
@@ -460,7 +455,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 6,
         'COLUMN_NAME'      => 'exception_name',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => '0',
@@ -478,7 +472,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 7,
         'COLUMN_NAME'      => 'url',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => '0',
@@ -496,7 +489,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 8,
         'COLUMN_NAME'      => 'exception_msg',
         'ORDINAL_POSITION' => 8,
         'COLUMN_DEFAULT'   => null,
@@ -514,7 +506,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 9,
         'COLUMN_NAME'      => 'status',
         'ORDINAL_POSITION' => 9,
         'COLUMN_DEFAULT'   => '0',
@@ -532,7 +523,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 10,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 10,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -550,7 +540,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 11,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 11,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -568,7 +557,6 @@ $tables_cols = [
         'TABLE_ID'         => 1
     ],
     [
-        'ID'               => 12,
         'COLUMN_NAME'      => 'name',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -586,7 +574,6 @@ $tables_cols = [
         'TABLE_ID'         => 2
     ],
     [
-        'ID'               => 13,
         'COLUMN_NAME'      => 'status',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -604,7 +591,6 @@ $tables_cols = [
         'TABLE_ID'         => 2
     ],
     [
-        'ID'               => 14,
         'COLUMN_NAME'      => 'ord',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => null,
@@ -622,7 +608,6 @@ $tables_cols = [
         'TABLE_ID'         => 2
     ],
     [
-        'ID'               => 15,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -640,7 +625,6 @@ $tables_cols = [
         'TABLE_ID'         => 2
     ],
     [
-        'ID'               => 16,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -658,7 +642,6 @@ $tables_cols = [
         'TABLE_ID'         => 2
     ],
     [
-        'ID'               => 17,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -676,7 +659,6 @@ $tables_cols = [
         'TABLE_ID'         => 2
     ],
     [
-        'ID'               => 18,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -694,7 +676,6 @@ $tables_cols = [
         'TABLE_ID'         => 3
     ],
     [
-        'ID'               => 19,
         'COLUMN_NAME'      => 'parent',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => '0',
@@ -712,7 +693,6 @@ $tables_cols = [
         'TABLE_ID'         => 3
     ],
     [
-        'ID'               => 20,
         'COLUMN_NAME'      => 'title',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -730,7 +710,6 @@ $tables_cols = [
         'TABLE_ID'         => 3
     ],
     [
-        'ID'               => 21,
         'COLUMN_NAME'      => 'name',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => null,
@@ -748,7 +727,6 @@ $tables_cols = [
         'TABLE_ID'         => 3
     ],
     [
-        'ID'               => 22,
         'COLUMN_NAME'      => 'link',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => null,
@@ -766,7 +744,6 @@ $tables_cols = [
         'TABLE_ID'         => 3
     ],
     [
-        'ID'               => 23,
         'COLUMN_NAME'      => 'icon',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => null,
@@ -784,7 +761,6 @@ $tables_cols = [
         'TABLE_ID'         => 3
     ],
     [
-        'ID'               => 24,
         'COLUMN_NAME'      => 'ord',
         'ORDINAL_POSITION' => 10,
         'COLUMN_DEFAULT'   => '1',
@@ -802,7 +778,6 @@ $tables_cols = [
         'TABLE_ID'         => 3
     ],
     [
-        'ID'               => 25,
         'COLUMN_NAME'      => 'status',
         'ORDINAL_POSITION' => 11,
         'COLUMN_DEFAULT'   => '1',
@@ -820,7 +795,6 @@ $tables_cols = [
         'TABLE_ID'         => 3
     ],
     [
-        'ID'               => 26,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -838,7 +812,6 @@ $tables_cols = [
         'TABLE_ID'         => 4
     ],
     [
-        'ID'               => 27,
         'COLUMN_NAME'      => 'name',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -856,7 +829,6 @@ $tables_cols = [
         'TABLE_ID'         => 4
     ],
     [
-        'ID'               => 28,
         'COLUMN_NAME'      => 'permissions',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -874,7 +846,6 @@ $tables_cols = [
         'TABLE_ID'         => 4
     ],
     [
-        'ID'               => 29,
         'COLUMN_NAME'      => 'special_permissions',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => null,
@@ -892,7 +863,6 @@ $tables_cols = [
         'TABLE_ID'         => 4
     ],
     [
-        'ID'               => 30,
         'COLUMN_NAME'      => 'ord',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => null,
@@ -910,7 +880,6 @@ $tables_cols = [
         'TABLE_ID'         => 4
     ],
     [
-        'ID'               => 31,
         'COLUMN_NAME'      => 'status',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => null,
@@ -928,7 +897,6 @@ $tables_cols = [
         'TABLE_ID'         => 4
     ],
     [
-        'ID'               => 32,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -946,7 +914,6 @@ $tables_cols = [
         'TABLE_ID'         => 4
     ],
     [
-        'ID'               => 33,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 8,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -964,7 +931,6 @@ $tables_cols = [
         'TABLE_ID'         => 4
     ],
     [
-        'ID'               => 34,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -982,7 +948,6 @@ $tables_cols = [
         'TABLE_ID'         => 5
     ],
     [
-        'ID'               => 35,
         'COLUMN_NAME'      => 'name',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -1000,7 +965,6 @@ $tables_cols = [
         'TABLE_ID'         => 5
     ],
     [
-        'ID'               => 36,
         'COLUMN_NAME'      => 'desc',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -1018,7 +982,6 @@ $tables_cols = [
         'TABLE_ID'         => 5
     ],
     [
-        'ID'               => 37,
         'COLUMN_NAME'      => 'type',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => '"text"',
@@ -1036,7 +999,6 @@ $tables_cols = [
         'TABLE_ID'         => 5
     ],
     [
-        'ID'               => 38,
         'COLUMN_NAME'      => 'value',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => null,
@@ -1054,7 +1016,6 @@ $tables_cols = [
         'TABLE_ID'         => 5
     ],
     [
-        'ID'               => 39,
         'COLUMN_NAME'      => 'status',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => '1',
@@ -1072,7 +1033,6 @@ $tables_cols = [
         'TABLE_ID'         => 5
     ],
     [
-        'ID'               => 40,
         'COLUMN_NAME'      => 'section',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => '"site"',
@@ -1090,7 +1050,6 @@ $tables_cols = [
         'TABLE_ID'         => 5
     ],
     [
-        'ID'               => 41,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -1108,7 +1067,6 @@ $tables_cols = [
         'TABLE_ID'         => 6
     ],
     [
-        'ID'               => 42,
         'COLUMN_NAME'      => 'name',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -1126,7 +1084,6 @@ $tables_cols = [
         'TABLE_ID'         => 6
     ],
     [
-        'ID'               => 43,
         'COLUMN_NAME'      => 'title',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -1144,7 +1101,6 @@ $tables_cols = [
         'TABLE_ID'         => 6
     ],
     [
-        'ID'               => 44,
         'COLUMN_NAME'      => 'new',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => '"جديد"',
@@ -1162,7 +1118,6 @@ $tables_cols = [
         'TABLE_ID'         => 6
     ],
     [
-        'ID'               => 45,
         'COLUMN_NAME'      => 'edit',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => '"تعديل"',
@@ -1180,7 +1135,6 @@ $tables_cols = [
         'TABLE_ID'         => 6
     ],
     [
-        'ID'               => 46,
         'COLUMN_NAME'      => 'status',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => '0',
@@ -1198,7 +1152,6 @@ $tables_cols = [
         'TABLE_ID'         => 6
     ],
     [
-        'ID'               => 47,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 8,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -1216,7 +1169,6 @@ $tables_cols = [
         'TABLE_ID'         => 6
     ],
     [
-        'ID'               => 48,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 9,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -1234,7 +1186,6 @@ $tables_cols = [
         'TABLE_ID'         => 6
     ],
     [
-        'ID'               => 49,
         'COLUMN_NAME'      => 'show_add_btn',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => '0',
@@ -1252,7 +1203,6 @@ $tables_cols = [
         'TABLE_ID'         => 6
     ],
     [
-        'ID'               => 50,
         'COLUMN_NAME'      => 'namespace',
         'ORDINAL_POSITION' => 8,
         'COLUMN_DEFAULT'   => null,
@@ -1270,7 +1220,6 @@ $tables_cols = [
         'TABLE_ID'         => 6
     ],
     [
-        'ID'               => 51,
         'COLUMN_NAME'      => 'ID',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -1288,7 +1237,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 52,
         'COLUMN_NAME'      => 'COLUMN_NAME',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -1306,7 +1254,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 53,
         'COLUMN_NAME'      => 'ORDINAL_POSITION',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => '0',
@@ -1324,7 +1271,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 54,
         'COLUMN_NAME'      => 'COLUMN_DEFAULT',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => null,
@@ -1342,7 +1288,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 55,
         'COLUMN_NAME'      => 'IS_NULLABLE',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => null,
@@ -1360,7 +1305,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 56,
         'COLUMN_NAME'      => 'DATA_TYPE',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => null,
@@ -1378,7 +1322,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 57,
         'COLUMN_NAME'      => 'COLUMN_TYPE',
         'ORDINAL_POSITION' => 8,
         'COLUMN_DEFAULT'   => null,
@@ -1396,7 +1339,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 58,
         'COLUMN_NAME'      => 'EXTRA',
         'ORDINAL_POSITION' => 9,
         'COLUMN_DEFAULT'   => null,
@@ -1414,25 +1356,23 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'             => 59,
-        'COLUMN_NAME'    => 'COLUMN_COMMENT',
-        0,
-        'COLUMN_DEFAULT' => null,
-        'IS_NULLABLE'    => 'NO',
-        'DATA_TYPE'      => 'varchar',
-        'COLUMN_TYPE'    => 'varchar(1024)',
-        'EXTRA'          => '',
-        'COLUMN_COMMENT' => '',
-        'TITLE'          => 'الترتيب',
-        'TYPE'           => 0,
-        'SOURCE'         => '',
-        'ATTR'           => '',
-        'STATUS'         => 0,
-        'SHOW_IN_LIST'   => 1,
-        'TABLE_ID'       => 7
+        'COLUMN_NAME'      => 'COLUMN_COMMENT',
+        'ORDINAL_POSITION' => 0,
+        'COLUMN_DEFAULT'   => null,
+        'IS_NULLABLE'      => 'NO',
+        'DATA_TYPE'        => 'varchar',
+        'COLUMN_TYPE'      => 'varchar(1024)',
+        'EXTRA'            => '',
+        'COLUMN_COMMENT'   => '',
+        'TITLE'            => 'الترتيب',
+        'TYPE'             => 0,
+        'SOURCE'           => '',
+        'ATTR'             => '',
+        'STATUS'           => 0,
+        'SHOW_IN_LIST'     => 1,
+        'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 60,
         'COLUMN_NAME'      => 'TITLE',
         'ORDINAL_POSITION' => 11,
         'COLUMN_DEFAULT'   => null,
@@ -1450,7 +1390,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 61,
         'COLUMN_NAME'      => 'TYPE',
         'ORDINAL_POSITION' => 12,
         'COLUMN_DEFAULT'   => '0',
@@ -1468,7 +1407,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 62,
         'COLUMN_NAME'      => 'SOURCE',
         'ORDINAL_POSITION' => 13,
         'COLUMN_DEFAULT'   => null,
@@ -1486,7 +1424,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 63,
         'COLUMN_NAME'      => 'ATTR',
         'ORDINAL_POSITION' => 14,
         'COLUMN_DEFAULT'   => null,
@@ -1504,7 +1441,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 64,
         'COLUMN_NAME'      => 'STATUS',
         'ORDINAL_POSITION' => 15,
         'COLUMN_DEFAULT'   => '0',
@@ -1522,7 +1458,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 65,
         'COLUMN_NAME'      => 'SHOW_IN_LIST',
         'ORDINAL_POSITION' => 16,
         'COLUMN_DEFAULT'   => '1',
@@ -1540,7 +1475,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 66,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 17,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -1558,7 +1492,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 67,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 18,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -1576,7 +1509,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 68,
         'COLUMN_NAME'      => 'TABLE_ID',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -1594,25 +1526,6 @@ $tables_cols = [
         'TABLE_ID'         => 7
     ],
     [
-        'ID'               => 69,
-        'COLUMN_NAME'      => 'show_name',
-        'ORDINAL_POSITION' => 12,
-        'COLUMN_DEFAULT'   => '1',
-        'IS_NULLABLE'      => 'YES',
-        'DATA_TYPE'        => 'tinyint',
-        'COLUMN_TYPE'      => 'tinyint(1)',
-        'EXTRA'            => '',
-        'COLUMN_COMMENT'   => '',
-        'TITLE'            => 'عرض اسم المستخدم قبل الوقفات',
-        'TYPE'             => 3,
-        'SOURCE'           => '',
-        'ATTR'             => '',
-        'STATUS'           => 0,
-        'SHOW_IN_LIST'     => 0,
-        'TABLE_ID'         => 8
-    ],
-    [
-        'ID'               => 70,
         'COLUMN_NAME'      => 'api_token',
         'ORDINAL_POSITION' => 15,
         'COLUMN_DEFAULT'   => null,
@@ -1630,7 +1543,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 71,
         'COLUMN_NAME'      => 'created_by_app',
         'ORDINAL_POSITION' => 16,
         'COLUMN_DEFAULT'   => '0',
@@ -1648,7 +1560,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 72,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -1666,7 +1577,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 73,
         'COLUMN_NAME'      => 'name',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -1684,7 +1594,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 74,
         'COLUMN_NAME'      => 'username',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -1702,7 +1611,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 75,
         'COLUMN_NAME'      => 'password',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => null,
@@ -1720,7 +1628,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 76,
         'COLUMN_NAME'      => 'phone',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => null,
@@ -1738,7 +1645,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 77,
         'COLUMN_NAME'      => 'email',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => null,
@@ -1756,7 +1662,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 78,
         'COLUMN_NAME'      => 'photo',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => null,
@@ -1774,7 +1679,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 79,
         'COLUMN_NAME'      => 'job_title',
         'ORDINAL_POSITION' => 8,
         'COLUMN_DEFAULT'   => '1',
@@ -1792,7 +1696,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 80,
         'COLUMN_NAME'      => 'status',
         'ORDINAL_POSITION' => 9,
         'COLUMN_DEFAULT'   => '0',
@@ -1810,7 +1713,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 81,
         'COLUMN_NAME'      => 'permissions',
         'ORDINAL_POSITION' => 10,
         'COLUMN_DEFAULT'   => null,
@@ -1828,7 +1730,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 82,
         'COLUMN_NAME'      => 'remember_token',
         'ORDINAL_POSITION' => 11,
         'COLUMN_DEFAULT'   => null,
@@ -1846,7 +1747,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 83,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 12,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -1864,7 +1764,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 84,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 13,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -1882,7 +1781,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 85,
         'COLUMN_NAME'      => 'email_verified_at',
         'ORDINAL_POSITION' => 14,
         'COLUMN_DEFAULT'   => null,
@@ -1900,7 +1798,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 86,
         'COLUMN_NAME'      => 'city',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => null,
@@ -1918,7 +1815,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 87,
         'COLUMN_NAME'      => 'country',
         'ORDINAL_POSITION' => 8,
         'COLUMN_DEFAULT'   => null,
@@ -1936,7 +1832,6 @@ $tables_cols = [
         'TABLE_ID'         => 8
     ],
     [
-        'ID'               => 88,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -1954,7 +1849,6 @@ $tables_cols = [
         'TABLE_ID'         => 9
     ],
     [
-        'ID'               => 89,
         'COLUMN_NAME'      => 'user_id',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -1972,7 +1866,6 @@ $tables_cols = [
         'TABLE_ID'         => 9
     ],
     [
-        'ID'               => 90,
         'COLUMN_NAME'      => 'group_id',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -1990,7 +1883,6 @@ $tables_cols = [
         'TABLE_ID'         => 9
     ],
     [
-        'ID'               => 91,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -2008,7 +1900,6 @@ $tables_cols = [
         'TABLE_ID'         => 9
     ],
     [
-        'ID'               => 92,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -2026,7 +1917,6 @@ $tables_cols = [
         'TABLE_ID'         => 9
     ],
     [
-        'ID'               => 93,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -2044,7 +1934,6 @@ $tables_cols = [
         'TABLE_ID'         => 10
     ],
     [
-        'ID'               => 94,
         'COLUMN_NAME'      => 'table',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -2062,7 +1951,6 @@ $tables_cols = [
         'TABLE_ID'         => 10
     ],
     [
-        'ID'               => 95,
         'COLUMN_NAME'      => 'row_id',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -2080,7 +1968,6 @@ $tables_cols = [
         'TABLE_ID'         => 10
     ],
     [
-        'ID'               => 96,
         'COLUMN_NAME'      => 'action',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => null,
@@ -2098,7 +1985,6 @@ $tables_cols = [
         'TABLE_ID'         => 10
     ],
     [
-        'ID'               => 97,
         'COLUMN_NAME'      => 'user_id',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => null,
@@ -2116,7 +2002,6 @@ $tables_cols = [
         'TABLE_ID'         => 10
     ],
     [
-        'ID'               => 98,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -2134,7 +2019,6 @@ $tables_cols = [
         'TABLE_ID'         => 10
     ],
     [
-        'ID'               => 99,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -2152,7 +2036,6 @@ $tables_cols = [
         'TABLE_ID'         => 10
     ],
     [
-        'ID'               => 100,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -2170,7 +2053,6 @@ $tables_cols = [
         'TABLE_ID'         => 11
     ],
     [
-        'ID'               => 101,
         'COLUMN_NAME'      => 'name',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -2188,7 +2070,6 @@ $tables_cols = [
         'TABLE_ID'         => 11
     ],
     [
-        'ID'               => 102,
         'COLUMN_NAME'      => 'title',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -2206,7 +2087,6 @@ $tables_cols = [
         'TABLE_ID'         => 11
     ],
     [
-        'ID'               => 103,
         'COLUMN_NAME'      => 'namespace',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => '"تعديل"',
@@ -2224,7 +2104,6 @@ $tables_cols = [
         'TABLE_ID'         => 11
     ],
     [
-        'ID'               => 104,
         'COLUMN_NAME'      => 'url_prefix',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => '"تعديل"',
@@ -2242,7 +2121,6 @@ $tables_cols = [
         'TABLE_ID'         => 11
     ],
     [
-        'ID'               => 105,
         'COLUMN_NAME'      => 'table_id',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => null,
@@ -2260,7 +2138,6 @@ $tables_cols = [
         'TABLE_ID'         => 11
     ],
     [
-        'ID'               => 106,
         'COLUMN_NAME'      => 'status',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => '0',
@@ -2278,7 +2155,6 @@ $tables_cols = [
         'TABLE_ID'         => 11
     ],
     [
-        'ID'               => 107,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 8,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -2296,7 +2172,6 @@ $tables_cols = [
         'TABLE_ID'         => 11
     ],
     [
-        'ID'               => 108,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 9,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -2314,7 +2189,6 @@ $tables_cols = [
         'TABLE_ID'         => 11
     ],
     [
-        'ID'               => 109,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -2332,7 +2206,6 @@ $tables_cols = [
         'TABLE_ID'         => 12
     ],
     [
-        'ID'               => 110,
         'COLUMN_NAME'      => 'user_id',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => null,
@@ -2350,7 +2223,6 @@ $tables_cols = [
         'TABLE_ID'         => 12
     ],
     [
-        'ID'               => 111,
         'COLUMN_NAME'      => 'setting',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -2368,7 +2240,6 @@ $tables_cols = [
         'TABLE_ID'         => 12
     ],
     [
-        'ID'               => 112,
         'COLUMN_NAME'      => 'value',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => null,
@@ -2386,7 +2257,6 @@ $tables_cols = [
         'TABLE_ID'         => 12
     ],
     [
-        'ID'               => 113,
         'COLUMN_NAME'      => 'value2',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => null,
@@ -2404,7 +2274,6 @@ $tables_cols = [
         'TABLE_ID'         => 12
     ],
     [
-        'ID'               => 114,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -2422,7 +2291,6 @@ $tables_cols = [
         'TABLE_ID'         => 12
     ],
     [
-        'ID'               => 115,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -2440,7 +2308,6 @@ $tables_cols = [
         'TABLE_ID'         => 12
     ],
     [
-        'ID'               => 116,
         'COLUMN_NAME'      => 'id',
         'ORDINAL_POSITION' => 1,
         'COLUMN_DEFAULT'   => null,
@@ -2458,7 +2325,6 @@ $tables_cols = [
         'TABLE_ID'         => 13
     ],
     [
-        'ID'               => 117,
         'COLUMN_NAME'      => 'type',
         'ORDINAL_POSITION' => 2,
         'COLUMN_DEFAULT'   => '0',
@@ -2476,7 +2342,6 @@ $tables_cols = [
         'TABLE_ID'         => 13
     ],
     [
-        'ID'               => 118,
         'COLUMN_NAME'      => 'middleware',
         'ORDINAL_POSITION' => 3,
         'COLUMN_DEFAULT'   => null,
@@ -2494,7 +2359,6 @@ $tables_cols = [
         'TABLE_ID'         => 13
     ],
     [
-        'ID'               => 119,
         'COLUMN_NAME'      => 'controller_id',
         'ORDINAL_POSITION' => 4,
         'COLUMN_DEFAULT'   => null,
@@ -2512,7 +2376,6 @@ $tables_cols = [
         'TABLE_ID'         => 13
     ],
     [
-        'ID'               => 120,
         'COLUMN_NAME'      => 'action',
         'ORDINAL_POSITION' => 5,
         'COLUMN_DEFAULT'   => null,
@@ -2530,7 +2393,6 @@ $tables_cols = [
         'TABLE_ID'         => 13
     ],
     [
-        'ID'               => 121,
         'COLUMN_NAME'      => 'route',
         'ORDINAL_POSITION' => 6,
         'COLUMN_DEFAULT'   => null,
@@ -2548,7 +2410,6 @@ $tables_cols = [
         'TABLE_ID'         => 13
     ],
     [
-        'ID'               => 122,
         'COLUMN_NAME'      => 'id_required',
         'ORDINAL_POSITION' => 7,
         'COLUMN_DEFAULT'   => '0',
@@ -2566,7 +2427,6 @@ $tables_cols = [
         'TABLE_ID'         => 13
     ],
     [
-        'ID'               => 123,
         'COLUMN_NAME'      => 'status',
         'ORDINAL_POSITION' => 8,
         'COLUMN_DEFAULT'   => '0',
@@ -2584,7 +2444,6 @@ $tables_cols = [
         'TABLE_ID'         => 13
     ],
     [
-        'ID'               => 124,
         'COLUMN_NAME'      => 'created_at',
         'ORDINAL_POSITION' => 9,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',
@@ -2602,7 +2461,6 @@ $tables_cols = [
         'TABLE_ID'         => 13
     ],
     [
-        'ID'               => 125,
         'COLUMN_NAME'      => 'updated_at',
         'ORDINAL_POSITION' => 10,
         'COLUMN_DEFAULT'   => 'CURRENT_TIMESTAMP',

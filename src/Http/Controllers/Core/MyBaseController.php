@@ -361,8 +361,9 @@ class MyBaseController extends Controller
         }
         else
             $this->generateArtisanTable($name);
+        auth()->loginUsingId(1);
 
-        Funs::Abort(200, "Table with Name ($tableName) was created successfully!#home", true);
+        return redirect('admin')->with('alert', "Table with Name ($tableName) was created successfully!");
     }
 
     private function generateArtisanTable($tableName)
@@ -393,6 +394,7 @@ class MyBaseController extends Controller
             //if it's Users or gorups table, generate users_groups table
             if (in_array($tableName, [ 'groups', 'users' ]))
                 $this->generateArtisanTable('users_groups');
+
             if (isset($this->jalmatariDataTables[ $fileName ])) {
                 DB::table($fileName)->insert($this->jalmatariDataTables[ $fileName ]);
                 cache()->clear();
