@@ -365,15 +365,15 @@ class MyBaseController extends Controller
 
     private function generateArtisanTable($tableName)
     {
-        $path = JalmatariServiceProvider::path() . '/database/migrations';
 
+        $path = JalmatariServiceProvider::path() . '/database/migrations';
         $files = scandir($path);
         $fileName = '';
         foreach ($files as $file)
             if (strlen($file) > 10) {
-                $file = substr($file, strpos($file, '_create_') + 8);
-                $file = substr($file, 0, strpos($file, '_table.php'));
-                if ($tableName == $file) {
+                $file_ = substr($file, strpos($file, '_create_') + 8);
+                $file_ = substr($file_, 0, strpos($file_, '_table.php'));
+                if ($tableName == $file_) {
                     $fileName = $file;
                     break;
                 }
@@ -381,11 +381,10 @@ class MyBaseController extends Controller
         if ($fileName == '')
             Funs::Abort(503, "There is no migrate for Table with Name ($tableName)!", true);
         else {
-            $path .= '/' . $fileName;
+            $path .= '/' . $file;
             $path = substr($path, strpos($path, 'vendor/'));
             $path = str_replace('Http/Controllers/../../', '', $path);
-
-            \Artisan::call('migrate', [ '--path' => $path ]);
+            \Artisan::call('migrate --path ' . $path);
             //if it's Users or gorups table, generate users_groups table
             if (in_array($tableName, [ 'groups', 'users' ]))
                 $this->generateArtisanTable('users_groups');
