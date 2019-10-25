@@ -10,7 +10,6 @@ namespace Jalmatari\Http\Controllers\Admin;
 use Auth;
 use AutoController;
 use DB;
-use Input;
 use Jalmatari\Http\Controllers\Core\MyBaseController;
 use Jalmatari\Models\settings;
 use Redirect;

@@ -12,7 +12,6 @@ use Artisan;
 use Auth;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
-use Input;
 use Jalmatari\Models\myModel;
 use Jalmatari\Models\tables;
 use Redirect;

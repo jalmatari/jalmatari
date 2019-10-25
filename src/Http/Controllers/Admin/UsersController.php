@@ -11,7 +11,6 @@ use Auth;
 use AutoController;
 use File;
 use Illuminate\Support\Facades\Hash;
-use Input;
 use Jalmatari\Funs\Funs;
 use Jalmatari\Http\Controllers\Core\MyBaseController;
 use Jalmatari\Models\permissions;

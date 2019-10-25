@@ -5,7 +5,6 @@ namespace Jalmatari\Http\Controllers\Admin;
 use Artisan;
 use Auth;
 use AutoController;
-use Input;
 use Jalmatari\Http\Controllers\Core\MyBaseController;
 use Jalmatari\Models\tables;
 use Redirect;
