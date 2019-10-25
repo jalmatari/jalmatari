@@ -11,9 +11,10 @@ class JalmatariServiceProvider extends ServiceProvider
 
     public static $middilewares = [ 'PublicAuth', 'UserAuth', 'AdminAuth' ];
 
-    public static function path()
+    public static function path($fileName='')
     {
-        return __DIR__;
+        $fileName=__DIR__.($fileName!=''?'/'.$fileName:'');
+        return $fileName;
     }
     /**
      * Bootstrap the application services.

@@ -2935,15 +2935,17 @@ $routes = [
 ];
 
 
-dd($groups,
-    $menu,
-    $permissions,
-    $settings,
-    $tables,
-    $tables_cols,
-    $users,
-    $users_groups,
-    $controllers,
-    $routes);
+return [
+    'groups'       => $groups,
+    'menu'         => $menu,
+    'permissions'  => $permissions,
+    'settings'     => $settings,
+    'tables'       => $tables,
+    'tables_cols'  => $tables_cols,
+    'users'        => $users,
+    'users_groups' => $users_groups,
+    'controllers'  => $controllers,
+    'routes'       => $routes,
+];
 
 

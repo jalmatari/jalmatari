@@ -4,6 +4,7 @@ namespace Jalmatari\Http\Controllers\Core;
 
 use Auth;
 use AutoController;
+use DB;
 use HTML;
 use Jalmatari\Funs\Funs;
 use Jalmatari\JalmatariServiceProvider;
@@ -28,6 +29,7 @@ class MyBaseController extends Controller
     protected $customWhere = null;
     protected $settingsSection = 'main';
     protected $settingsViewFile = 'admin.settings.settings';
+    protected $jalmatariDataTables = [];
     //private methods
     protected $privateMethods = [
         "__construct",
@@ -366,7 +368,7 @@ class MyBaseController extends Controller
     private function generateArtisanTable($tableName)
     {
 
-        $path = JalmatariServiceProvider::path() . '/database/migrations';
+        $path = JalmatariServiceProvider::path('database/migrations');
         $files = scandir($path);
         $fileName = '';
         foreach ($files as $file)
@@ -374,7 +376,7 @@ class MyBaseController extends Controller
                 $file_ = substr($file, strpos($file, '_create_') + 8);
                 $file_ = substr($file_, 0, strpos($file_, '_table.php'));
                 if ($tableName == $file_) {
-                    $fileName = $file;
+                    $fileName = $file_;
                     break;
                 }
             }
@@ -384,7 +386,12 @@ class MyBaseController extends Controller
             $path .= '/' . $file;
             $path = substr($path, strpos($path, 'vendor/'));
             $path = str_replace('Http/Controllers/../../', '', $path);
+            if (count($this->jalmatariDataTables) == 0)
+                $this->jalmatariDataTables = require JalmatariServiceProvider::path('database/insertDatabaseData.php');
+
             \Artisan::call('migrate --path ' . $path);
+            if (isset($this->jalmatariDataTables[ $fileName ]))
+                DB::table($fileName)->insert($this->jalmatariDataTables[ $fileName ]);
             //if it's Users or gorups table, generate users_groups table
             if (in_array($tableName, [ 'groups', 'users' ]))
                 $this->generateArtisanTable('users_groups');
