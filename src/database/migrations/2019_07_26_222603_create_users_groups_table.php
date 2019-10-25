@@ -20,7 +20,8 @@ class CreateUsersGroupsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->nullable();
             $table->integer('group_id')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
 

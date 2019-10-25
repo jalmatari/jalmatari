@@ -25,7 +25,8 @@ class CreateRoutesTable extends Migration
             $table->string('route', 100)->nullable();
             $table->tinyInteger('id_required')->nullable()->default(0);
             $table->tinyInteger('status')->default(0);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
 

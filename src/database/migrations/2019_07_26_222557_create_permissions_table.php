@@ -23,7 +23,8 @@ class CreatePermissionsTable extends Migration
             $table->string('special_permissions', 2000)->nullable();
             $table->integer('ord')->nullable();
             $table->tinyInteger('status')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
 

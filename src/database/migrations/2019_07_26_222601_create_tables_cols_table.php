@@ -33,7 +33,8 @@ class CreateTablesColsTable extends Migration
             $table->string('ATTR', 1024)->nullable();
             $table->tinyInteger('STATUS')->default(0);
             $table->tinyInteger('SHOW_IN_LIST')->default(1);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
 

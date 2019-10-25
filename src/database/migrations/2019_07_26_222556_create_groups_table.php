@@ -21,7 +21,8 @@ class CreateGroupsTable extends Migration
             $table->string('name', 200);
             $table->tinyInteger('status')->nullable();
             $table->integer('ord')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
 

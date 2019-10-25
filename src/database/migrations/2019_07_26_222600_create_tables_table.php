@@ -25,7 +25,8 @@ class CreateTablesTable extends Migration
             $table->tinyInteger('show_add_btn')->nullable()->default(0);
             $table->tinyInteger('status')->nullable()->default(0);
             $table->string('namespace', 500)->nullable()->default('');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
 
