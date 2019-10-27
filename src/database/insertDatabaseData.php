@@ -243,6 +243,14 @@ $settings = [
         'value'   => '{"LL":"(LL) MMMM D, YYYY [January 5, 2017]","L":"(L) MM/DD/YYYY [01/05/2017]","LT":"(LT) h:mm A [5:04 PM]","LTS":"(LTS) h:mm:ss A [5:04:05 PM]","l":"(l) MM/DD/YYYY [1/5/2017]","ll":"(ll) MMMM D, YYYY [Jan 5, 2017]","LLL":"(LLL) MMMM D, YYYY h:mm A [January 5, 2017 5:04 PM]","lll":"(lll) MMMM D, YYYY h:mm A [Jan 5, 2017 5:04 PM]","LLLL":"(LLLL) dddd, MMMM D, YYYY h:mm A [Thursday, January 5, 2017 5:04 PM]","llll":"(llll) dddd, MMMM D, YYYY h:mm A [Thu, Jan 5, 2017 5:04 PM]"}',
         'status'  => 1,
         'section' => 'main'
+    ],
+    [
+        'name'    => 'ver',
+        'desc'    => 'تحويل التاريخ الميلادي إلى هجري',
+        'type'    => 'text',
+        'value'   => '0.0',
+        'status'  => 1,
+        'section' => 'site'
     ]
 ];
 
