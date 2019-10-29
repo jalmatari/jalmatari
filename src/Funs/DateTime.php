@@ -14,14 +14,10 @@ trait DateTime
 
     public static function HijriMonth($month = null, $justNum = false)
     {
-        if (is_null($month)) {
-            $Arabic = new \I18N_Arabic('Date');
-            $month = $Arabic->date("m", time());
-            $month = (int) $month;
-            if ($justNum !== false)
-                return $month;
-        }
-        $months = [ '--', 'محرم', 'صفر', 'ربيع الأول', 'ربيع الثاني', 'جمادى الأولى', 'جمادى الآخرة', 'رجب', 'شعبان', 'رمضان', 'شوال', 'ذو القعدة', 'ذو الحجة' ];
+        if (app()->getLocale() == 'ar')
+            $months = [ '--', 'محرم', 'صفر', 'ربيع الأول', 'ربيع الثاني', 'جمادى الأولى', 'جمادى الآخرة', 'رجب', 'شعبان', 'رمضان', 'شوال', 'ذو القعدة', 'ذو الحجة' ];
+        else
+            $months = [ '--', "Muḥarram", "Ṣafar", "Rabīʿ al-Awwal", "Rabīʿ al-Thānī", "Jumādá al-Ūlá", "Jumādá al-Ākhirah", "Rajab", "Sha‘bān", "Ramaḍān", "Shawwāl", "Dhū al-Qa‘dah", "Dhū al-Ḥijjah" ];
 
         return static::IsIn($months, (int) $month, '--');
     }
@@ -69,11 +65,13 @@ trait DateTime
             if ($month) {
                 $final_date .= (($final_date != "") ? ' ' : '') . static::HijriMonth($m);
             }
+            $isArabic = app()->getLocale() == 'ar';
             if ($year) {
-                $final_date .= (($final_date != "") ? ' ' : '') . $y . 'هـ';
+                $final_date .= (($final_date != "") ? ' ' : '') . $y . ($isArabic ? 'هـ' : ' Hijri');
             }
             $final_date = $final_date . ($withTime ? ' &nbsp; ' . $time : '');
-            $final_date = static::En2Ar($final_date);
+            if ($isArabic)
+                $final_date = static::En2Ar($final_date);
         }
 
         return $final_date;
@@ -190,91 +188,6 @@ trait DateTime
 
     }
 
-    public static function HijriMiladiMonthsBetweenTwoDates($start_date = null, $end_date = null)
-    {
-
-        $Arabic = new I18N_Arabic('Date');
-        $dates = [];
-        if (is_null($start_date)) {
-            $start_date = static::Setting('project_start_hijri_date');
-        }
-        if (is_null($end_date)) {
-            $time = time();
-            $correction = $Arabic->dateCorrection($time);
-            $end_date = $Arabic->date('d/m/Y', $time, $correction);
-        }
-        $start_date = static::YearMonthDayAsArr($start_date);
-        $end_date = static::YearMonthDayAsArr($end_date);
-        $start_month = $start_date[1];
-        $start_day = $start_date[2];
-        //$end_month = ($start_date[0] == $end_date[0]) ? $end_date[1] : 12;
-        for ($i = $start_date[0]; $i <= $end_date[0]; $i++) {
-            $end_month = ($i == $end_date[0]) ? $end_date[1] : 12;
-            for ($ii = $start_month; $ii <= $end_month; $ii++) {
-                $end_day = $Arabic->hijriMonthDays($ii, $i);
-                $dates[] = [
-                    "start"     => [
-                        date('Y-m-d H:i:s', static::MiladiFromHijriArr([ $i, $ii, $start_day ], $Arabic)),
-                        $start_day . '/' . $ii . '/' . $i
-                    ],
-                    "end"       => [
-                        date('Y-m-d H:i:s', static::MiladiFromHijriArr([ $i, $ii, $end_day ], $Arabic)),
-                        $end_day . '/' . $ii . '/' . $i
-                    ],
-                    "days"      => $end_day,
-                    "month"     => (int) $ii,
-                    "monthName" => static::HijriMonth($ii) . ($ii == 1 ? ' ' . static::En2Ar($i) . 'هـ' : ''),
-                    "year"      => (int) $i
-                ];
-            }
-            $start_month = 1;
-            $start_day = 1;
-        }
-
-        return $dates;
-    }
-
-    public static function HijriMiladiDayesBetweenTwoDates($start_date = null, $end_date = null)
-    {
-
-        $Arabic = new I18N_Arabic('Date');
-        $dates = [];
-        if (is_null($start_date)) {
-            $start_date = static::Setting('project_start_hijri_date');
-        }
-        if (is_null($end_date)) {
-            $time = time();
-            $correction = $Arabic->dateCorrection($time);
-            $end_date = $Arabic->date('d/m/Y', $time, $correction);
-        }
-        $start_date = static::YearMonthDayAsArr($start_date);
-        $end_date = static::YearMonthDayAsArr($end_date);
-        $start_month = $start_date[1];
-        $start_day = $start_date[2];
-        $end_month = ($start_date[0] == $end_date[0]) ? $end_date[1] : 12;
-        for ($i = $start_date[0]; $i <= $end_date[0]; $i++) {
-            for ($ii = $start_month; $ii <= $end_month; $ii++) {
-                $end_day = $Arabic->hijriMonthDays($ii, $i);
-                for ($day = $start_day; $day <= $end_day; $day++) {
-                    $miladi_date = Carbon::createFromTimestamp(static::MiladiFromHijriArr([ $i, $ii, $day ], $Arabic))->startOfDay();
-                    $dates[] = [
-                        "miladi"     => $miladi_date->toDateTimeString(),
-                        "miladi_end" => $miladi_date->copy()->endOfDay()->toDateTimeString(),
-                        "hijri"      => $day . '/' . $ii . '/' . $i,
-                        "day"        => (int) $day,
-                        "month"      => (int) $ii,
-                        "year"       => (int) $i
-                    ];
-                }
-            }
-            $start_month = 1;
-            $start_day = 1;
-            $end_month = ($i == $end_date[0]) ? $end_date[1] : 12;
-        }
-
-        return $dates;
-    }
-
     public static function YearMonthDayAsArr($date)
     {
         if (!is_array($date)) {
@@ -292,48 +205,6 @@ trait DateTime
         return $date;
     }
 
-    public static function MiladiFromHijri($date)
-    {
-        $Arabic = new I18N_Arabic('Date');
-        $date = static::YearMonthDayAsArr($date);
-        $year = $date[0];
-        $month = $date[1];
-        $day = $date[2];
-        $correction = $Arabic->mktimeCorrection($month, $year);
-        $time = $Arabic->mktime(0, 0, 0, $month, $day, $year, $correction);
-
-        return date('Y-m-d H:i:s', $time);
-    }
-
-    public static function TodayHijri()
-    {
-        $Arabic = new I18N_Arabic('Date');
-        $correction = $Arabic->dateCorrection(time());
-
-        return $Arabic->date("d/m/Y", time(), $correction);
-    }
-
-    public static function FirstDayInMonthHijri($month = 'm', $year = 'Y', $returnMiladi = false)
-    {
-        $Arabic = new I18N_Arabic('Date');
-        $correction = $Arabic->dateCorrection(time());
-        $data = $Arabic->date("1/$month/$year", time(), $correction);
-        if ($returnMiladi !== false)
-            $data = static::MiladiFromHijri($data);
-
-        return $data;
-    }
-
-    public static function MiladiFromHijriArr($date, $Arabic)//$Arabic=new I18N_Arabic('Date');
-    {
-        $year = $date[0];
-        $month = $date[1];
-        $day = $date[2];
-        $correction = $Arabic->mktimeCorrection($month, $year);
-        $time = $Arabic->mktime(0, 0, 0, $month, $day, $year, $correction);
-
-        return $time;
-    }
 
 
     public static function DaysBetweenTwoDates($start_date = '', $end_date = '')
@@ -347,11 +218,11 @@ trait DateTime
 
     public static function Date($date)
     {
-        $date=Carbon::parse($date);
-        $format='ll';
+        $date = Carbon::parse($date);
+        $format = 'll';
 
-        if(!is_null(setting('dateFormat')))
-            $format=Funs::FirstSetting('dateFormat');
+        if (!is_null(setting('dateFormat')))
+            $format = Funs::FirstSetting('dateFormat');
 
         return $date->isoFormat($format);
     }
