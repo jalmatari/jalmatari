@@ -227,17 +227,28 @@ trait HelperFuns
     }
 
 
-    public static function IsIn($arr, $key, $else = null)
+    public static function IsIn($arr, $key, $else = null, $caseIgnore = true)
     {
-        $val = $else;
-        $key = (string) $key;
         $isCollection = false;
         if (is_object($arr))
             $isCollection = get_class($arr) == 'Illuminate\Database\Eloquent\Collection';
-        if (!is_array($arr) && isset($arr->{$key}))
-            $val = $arr->{$key};
-        else if ((is_array($arr) || $isCollection) && isset($arr[ $key ]))
-            $val = $arr[ $key ];
+
+        $val = $else;
+        $key = (string) $key;
+        $keys = [ $key ];
+        if ($caseIgnore)
+            $keys = [ $key, strtoupper($key), strtolower($key) ];
+
+        foreach ($keys as $key_) {
+            if (!is_array($arr) && isset($arr->{$key_})) {
+                $val = $arr->{$key_};
+                break;
+            }
+            else if ((is_array($arr) || $isCollection) && isset($arr[ $key_ ])) {
+                $val = $arr[ $key_ ];
+                break;
+            }
+        }
 
         return $val;
     }
