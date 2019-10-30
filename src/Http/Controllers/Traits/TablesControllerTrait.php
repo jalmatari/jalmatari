@@ -22,15 +22,15 @@ trait TablesControllerTrait
         $this->db = Funs::DB_Name();
 
         $tables = [];
-        $results = "SELECT *,REPLACE(table_name,'{$this->prefix}','') as name,"
+        $dbTables = "SELECT *,REPLACE(table_name,'{$this->prefix}','') as name,"
             . " (select id from {$this->db}.{$this->prefix}tables where CONCAT('{$this->prefix}',name)=table_name) TABLE_ID"
             . " FROM information_schema.tables"
             . " WHERE table_schema = '{$this->db}'"
             . " and TABLE_NAME like '{$this->prefix}%' and TABLE_NAME not like '%copy%'"
             . " and TABLE_NAME NOT in ('{$this->prefix}password_resets', '{$this->prefix}migrations')";
-        $results = DB::select($results);
+        $dbTables = DB::select($dbTables);
 
-        foreach ($results as $table) {
+        foreach ($dbTables as $table) {
 
             $table->IS_New_TABLE = !(bool) $table->TABLE_ID;
             //if It's New Table
