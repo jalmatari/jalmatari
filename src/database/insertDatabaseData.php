@@ -2797,6 +2797,15 @@ $routes = [
         'route'         => 'app.api',
         'id_required'   => 0,
         'status'        => 1
+    ],
+    [
+        'type'          => 0,
+        'middleware'    => 'AdminAuth',
+        'controller_id' => 1,
+        'action'        => 'authSetup',
+        'route'         => 'auth.setup',
+        'id_required'   => 0,
+        'status'        => 1
     ]
 ];
 
