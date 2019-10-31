@@ -18,7 +18,13 @@
             $(".sortable").sortable({
                 items: "tbody tr:not(.not-sortable)",
                 placeholder: "ui-state-highlight",
+                start:function (event, ui) {
+                    $('.ui-state-highlight').css('height',ui.item[0].style.height);
+                    if($('.ui-state-highlight').length==1)
+                        $('.ui-state-highlight').after('<tr class="ui-state-highlight hidden"></tr>')
+                },
                 stop: function (event, ui) {
+                    $('.ui-state-highlight.hidden').remove();
                     var id = $(ui.item[0]).find('[name="id[]"]').val();//ui.item[0].childNodes[0].innerText.trim();
                     api({
                         ac: 'orderMenus',
@@ -33,4 +39,9 @@
             oTable.draw();
         }
     </script>
+    <style>
+        .ui-sortable-helper{
+            display: table;
+        }
+    </style>
 @stop
