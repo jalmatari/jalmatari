@@ -7,6 +7,7 @@
 
 namespace Jalmatari\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\DB;
 use Jalmatari\Funs\Funs;
 use Jalmatari\Funs\TablesSourceFuns;
 use Jalmatari\Http\Controllers\Core\MyBaseController;
@@ -265,6 +266,50 @@ class TablesController extends MyBaseController
         $this->recheck();
 
         return true;
+    }
+
+    public function orderTables()
+    {
+        $type = request('position');    // after,before
+        $positionId = request('positionId');
+        $tableId = request('id');
+        $currTable = tables::find($tableId);
+
+        $sqlId = $tableId < $positionId ? $tableId : $positionId;
+        $newId = $positionId;
+        if ($type == 'after' && $positionId < $tableId)
+            $newId++;
+
+        //set Temporary Ids to avoid conflicts
+        $tables = tables::where('id', '>=', $sqlId)->get();
+        $increasedId = tables::max('id') + 1;
+        foreach ($tables as $table)
+            if ($table->name != $currTable->name)
+                $this->updateTable($table, $increasedId++);
+
+        $this->updateTable($currTable, $newId);
+
+        //reSet Ids
+        $tables = tables::where('id', '>=', $sqlId)
+            ->where('id', '!=', $newId)->get();
+        $increasedId = $sqlId;
+        foreach ($tables as $table) {
+            if ($newId == $increasedId)
+                $increasedId++;
+            $this->updateTable($table, $increasedId++);
+        }
+
+        DB::update("ALTER TABLE " . Funs::DB_Prefix() . "tables AUTO_INCREMENT = " . (DB::table('tables')->max('id') + 1));
+
+        return request();
+    }
+
+    private function updateTable(tables $table, $newId)
+    {
+        $oldId = $table->id;
+        $table->update([ 'id' => $newId ]);
+        controllers::where('table_id', $oldId)->update([ 'table_id' => $newId ]);
+        tables_cols::where('TABLE_ID', $oldId)->update([ 'TABLE_ID' => $newId ]);
     }
 
 }
