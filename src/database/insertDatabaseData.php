@@ -125,6 +125,15 @@ $menu = [
         'icon'   => 'fa-sitemap',
         'ord'    => 1,
         'status' => 0
+    ],
+    [
+        'parent' => 10,
+        'title'  => 'صفحات تسجيل الدخول',
+        'name'   => 'authSetup',
+        'link'   => 'admin.auth.setup',
+        'icon'   => 'fa-unlock-alt',
+        'ord'    => 1,
+        'status' => 0
     ]
 ];
 
