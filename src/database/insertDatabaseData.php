@@ -2815,6 +2815,15 @@ $routes = [
         'route'         => 'auth.setup',
         'id_required'   => 0,
         'status'        => 1
+    ],
+    [
+        'type'          => 1,
+        'middleware'    => 'AdminAuth',
+        'controller_id' => 1,
+        'action'        => 'saveAuthCols',
+        'route'         => 'auth.setup',
+        'id_required'   => 0,
+        'status'        => 1
     ]
 ];
 
