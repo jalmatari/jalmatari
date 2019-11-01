@@ -5,8 +5,10 @@ namespace Jalmatari\Http\Controllers\Admin;
 use Artisan;
 use Auth;
 use AutoController;
+use Jalmatari\Funs\Funs;
 use Jalmatari\Http\Controllers\Core\MyBaseController;
 use Jalmatari\Models\tables;
+use Jalmatari\Models\tables_cols;
 use Redirect;
 use View;
 
@@ -28,10 +30,14 @@ class AdminController extends MyBaseController
 
     public function destroySession()
     {
+
         cache()->clear();
         auth()->logout();
+        //if logout from home go to home login
+        $route = !request()->is('logout') ? 'admin.' : '';
+        $route .= 'login';
 
-        return redirect()->route('admin.login');
+        return redirect()->route($route);
     }
 
     public function storeSession()
@@ -113,6 +119,36 @@ class AdminController extends MyBaseController
             $msg = 'Jalmatari Config file is existed before!';
 
         return back()->with('alert', $msg);
+    }
+
+    public function authSetup()
+    {
+
+        $tables = tables_cols::whereRaw('COLUMN_NAME not in ("id","password") and TABLE_ID in (select id from ' . db_prefix() . 'tables where name in("users","users_info"))')
+            ->orderBy('ORDINAL_POSITION')
+            ->get()
+            ->groupBy('TABLE_ID');
+        $authList = $tables
+            ->first()
+            ->whereIn('COLUMN_NAME', [ 'name', 'username', 'password', 'phone', 'email', 'job_title' ])
+            ->pluck('TITLE', 'COLUMN_NAME');
+
+        $authRegisterCols = Funs::SettingAsArr('authRegisterCols');
+        $authLoginCols = Funs::SettingAsArr('authLoginCols');
+        if (count($authRegisterCols) == 0)
+            $authRegisterCols = [ 'name', 'email', 'password' ];
+        if (count($authLoginCols) == 0)
+            $authLoginCols = [ 'email', 'password' ];
+
+        return view('admin.auth.setup', compact('tables', 'authRegisterCols', 'authLoginCols', 'authList'));
+    }
+
+    public function saveAuthCols()
+    {
+        setting('authRegisterCols', json_encode(request('registerCols')));
+        setting('authLoginCols', json_encode(request('loginCols')));
+
+        return response()->json(true);
     }
 
 }

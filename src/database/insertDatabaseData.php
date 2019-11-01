@@ -2824,6 +2824,15 @@ $routes = [
         'route'         => 'auth.setup',
         'id_required'   => 0,
         'status'        => 1
+    ],
+    [
+        'type'          => 0,
+        'middleware'    => 'PublicAuth',
+        'controller_id' => 1,
+        'action'        => 'destroySession',
+        'route'         => 'logout',
+        'id_required'   => 0,
+        'status'        => 1
     ]
 ];
 
