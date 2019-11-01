@@ -38,7 +38,7 @@ $menu = [
     ],
     [
         'parent' => 11,
-        'title'  => 'بيانات الموظفين',
+        'title'  => 'بيانات المستخدمين',
         'name'   => 'users',
         'link'   => 'admin.users',
         'icon'   => 'fa-user',
@@ -294,7 +294,7 @@ $tables = [
     ],
     [
         'name'         => 'permissions',
-        'title'        => 'صلاحيات الموظفين',
+        'title'        => 'صلاحيات المستخدمين',
         'new'          => 'وظيفة جديدة',
         'edit'         => 'تعديل',
         'status'       => 1,
@@ -330,7 +330,7 @@ $tables = [
     ],
     [
         'name'         => 'users',
-        'title'        => 'بيانات الموظفين',
+        'title'        => 'بيانات المستخدمين',
         'new'          => 'إضافة مستخدم جديد',
         'edit'         => 'تعديل مستخدم',
         'status'       => 1,
@@ -2231,7 +2231,7 @@ $tables_cols = [
         'COLUMN_TYPE'      => 'int(11)',
         'EXTRA'            => '',
         'COLUMN_COMMENT'   => '',
-        'TITLE'            => 'رقم الموظف',
+        'TITLE'            => 'رقم المستخدم',
         'TYPE'             => 0,
         'SOURCE'           => '',
         'ATTR'             => '',
@@ -2561,7 +2561,7 @@ $controllers = [
     ],
     [
         'name'       => 'PermissionsController',
-        'title'      => 'صلاحيات الموظفين',
+        'title'      => 'صلاحيات المستخدمين',
         'namespace'  => 'Jalmatari\\Http\\Controllers\\Admin',
         'url_prefix' => 'permissions',
         'table_id'   => 4,
@@ -2585,7 +2585,7 @@ $controllers = [
     ],
     [
         'name'       => 'UsersController',
-        'title'      => 'بيانات الموظفين',
+        'title'      => 'بيانات المستخدمين',
         'namespace'  => 'Jalmatari\\Http\\Controllers\\Admin',
         'url_prefix' => 'users',
         'table_id'   => 8,
