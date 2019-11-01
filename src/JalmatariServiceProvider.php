@@ -3,6 +3,7 @@
 namespace Jalmatari;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -11,9 +12,10 @@ class JalmatariServiceProvider extends ServiceProvider
 
     public static $middilewares = [ 'PublicAuth', 'UserAuth', 'AdminAuth' ];
 
-    public static function path($fileName='')
+    public static function path($fileName = '')
     {
-        $fileName=__DIR__.($fileName!=''?'/'.$fileName:'');
+        $fileName = __DIR__ . ($fileName != '' ? '/' . $fileName : '');
+
         return $fileName;
     }
     /**
@@ -36,7 +38,9 @@ class JalmatariServiceProvider extends ServiceProvider
         $this->publishes([ __DIR__ . '/config.php' => config_path('jalmatari.php') ], 'jalmatari-config');
         //$this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
-        //include ('database/insertDatabaseData.php');
+        // Using class based composers...
+        View::composer( 'admin.layouts.template', 'Jalmatari\Composers\AdminComposer');
+        View::composer('*', 'Jalmatari\Composers\JalmatariComposer');
     }
 
     public function firstInit()

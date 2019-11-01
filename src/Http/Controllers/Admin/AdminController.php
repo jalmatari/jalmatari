@@ -37,7 +37,7 @@ class AdminController extends MyBaseController
         $route = !request()->is('logout') ? 'admin.' : '';
         $route .= 'login';
 
-        return redirect()->route($route);
+        return redirect()->route($route)->with('alert', "تم تسجيل خروجك بنجاح");;
     }
 
     public function storeSession()
@@ -124,29 +124,33 @@ class AdminController extends MyBaseController
     public function authSetup()
     {
 
-        $tables = tables_cols::whereRaw('COLUMN_NAME not in ("id","password") and TABLE_ID in (select id from ' . db_prefix() . 'tables where name in("users","users_info"))')
+        $tables = tables_cols::whereRaw('COLUMN_NAME not in ("id","created_at","updated_at","api_token","created_by_app","email_verified_at","photo","status","remember_token","user_id","permissions") and TABLE_ID in (select id from ' . db_prefix() . 'tables where name in("users","users_info"))')
             ->orderBy('ORDINAL_POSITION')
             ->get()
             ->groupBy('TABLE_ID');
         $authList = $tables
             ->first()
-            ->whereIn('COLUMN_NAME', [ 'name', 'username', 'password', 'phone', 'email', 'job_title' ])
+            ->whereIn('COLUMN_NAME', [ 'name', 'username', 'phone', 'email', 'job_title' ])
             ->pluck('TITLE', 'COLUMN_NAME');
 
         $authRegisterCols = Funs::SettingAsArr('authRegisterCols');
         $authLoginCols = Funs::SettingAsArr('authLoginCols');
+        $authAdminLoginCols = Funs::SettingAsArr('authAdminLoginCols');
         if (count($authRegisterCols) == 0)
             $authRegisterCols = [ 'name', 'email', 'password' ];
         if (count($authLoginCols) == 0)
             $authLoginCols = [ 'email', 'password' ];
+        if (count($authAdminLoginCols) == 0)
+            $authAdminLoginCols = [ 'username', 'password' ];
 
-        return view('admin.auth.setup', compact('tables', 'authRegisterCols', 'authLoginCols', 'authList'));
+        return view('admin.auth.setup', compact('tables', 'authRegisterCols', 'authLoginCols', 'authList', 'authAdminLoginCols'));
     }
 
     public function saveAuthCols()
     {
         setting('authRegisterCols', json_encode(request('registerCols')));
         setting('authLoginCols', json_encode(request('loginCols')));
+        setting('authAdminLoginCols', json_encode(request('adminLoginCols')));
 
         return response()->json(true);
     }
