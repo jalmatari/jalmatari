@@ -2,9 +2,8 @@
 
 namespace Jalmatari\Composers;
 
-use Carbon\Carbon;
 use Illuminate\View\View;
-use Jalmatari\Funs\Funs;
+use Jalmatari\Models\tables_cols;
 
 class AdminComposer
 {
@@ -26,8 +25,20 @@ class AdminComposer
      */
     public function compose(View $view)
     {
-
+        if (request()->is('admin/login'))
+            $this->login($view);
     }
 
+
+    private function login(View $view)
+    {
+        $col = setting('authAdminLoginCol');
+        if (is_null($col))
+            $col = 'email';
+        $col = tables_cols::whereRaw('TABLE_ID=(select id from ' . db_prefix() . 'tables where name ="users" limit 1)')
+            ->where('COLUMN_NAME', $col)
+            ->first();
+        $view->with('col', $col);
+    }
 
 }

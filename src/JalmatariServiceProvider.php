@@ -39,7 +39,7 @@ class JalmatariServiceProvider extends ServiceProvider
         //$this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
         // Using class based composers...
-        View::composer( 'admin.layouts.template', 'Jalmatari\Composers\AdminComposer');
+        View::composer( 'admin*', 'Jalmatari\Composers\AdminComposer');
         View::composer('*', 'Jalmatari\Composers\JalmatariComposer');
     }
 

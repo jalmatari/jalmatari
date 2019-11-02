@@ -51,38 +51,49 @@
         <p class="login-box-msg">
             تسجيل الدخول إلى لوحة التحكم بالموقع
         </p>
-        {!! Form::open(['route'=>'admin.login']) !!}
-        @if (old('username'))
-            <div class="alert alert-danger alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>خطأ:</strong> يرجى التأكد من صحة البيانات المدخلة!
+        <form method="POST" action="{{ route_('admin.login') }}">
+            {{ csrf_field() }}
+            <?php $colName = $col->COLUMN_NAME; ?>
+            <div class="form-group has-feedback{{ $errors->has($colName) ? ' has-error' : '' }}">
+                <label for="{{$colName}}"
+                       class="control-label">@lang($col->TITLE)</label>
+                    <input id="{{$colName}}" type="{{$colName=='email'?'email':'text'}}"
+                           class="form-control" name="{{$colName}}"
+                           value="{{ old($colName) }}" required autofocus>
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                    @if ($errors->has($colName))
+                        <span class="help-block">
+                                        <strong>{{ $errors->first($colName) }}</strong>
+                                    </span>
+                    @endif
             </div>
-        @endif
-
-        <div class="form-group has-feedback">
-            {!! Form::label('username','إسم المستخدم:') !!}
-            {!! Form::text('username',old('username'),['class'=>'form-control']) !!}
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-            {!! Form::label('password','كلمة المرور:') !!}
-            {!! Form::password('password',['class'=>'form-control']) !!}
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-        <div class="form-group">
-
-            {!! Form::checkBox('remember',old('remember'),['class'=>'form-control']) !!}
-            {!! Form::label('remember','تذكر بيانات التسجيل؟') !!}
-        </div>
-
-        <div class="row">
-            <div class="col-xs-6">
-
-                {!! Form::submit('تسجيل الدخول',array('class'=>"btn btn-primary btn-block btn-flat")) !!}
+            <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
+                <label for="password" class="control-label">@lang('Password')</label>
+                    <input id="password" type="password" class="form-control" name="password" required>
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
             </div>
-            <!-- /.col -->
-        </div>
-        {!! Form::close() !!}
+
+            <div class="form-group">
+                <label class="remember">
+                    <input type="checkbox"
+                           id="remember"
+                           name="remember" {{ old('remember') ? 'checked' : '' }}>
+                    @lang('Remember me')
+                </label>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('Log In')</button>
+                </div>
+            </div>
+
+        </form>
 
     </div>
     <!-- /.login-box-body -->

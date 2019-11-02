@@ -42,8 +42,6 @@ class JalmatariComposer
             ->where('COLUMN_NAME', $col)
             ->first();
         $view->with('col', $col);
-
-
     }
 
 
