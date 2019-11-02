@@ -67,7 +67,7 @@ if (!function_exists('viewCache_')) {
 if (!function_exists('setting')) {
     function setting($settingName, $val = null)
     {
-        return \Jalmatari\Funs\Funs::Setting($settingName, $val);
+        return Funs::Setting($settingName, $val);
     }
 }
 
@@ -136,5 +136,16 @@ if (! function_exists('array_pluck')) {
     function array_pluck($array, $value, $key = null)
     {
         return Arr::pluck($array, $value, $key);
+    }
+}
+
+if (! function_exists('db_prefix')) {
+    /**
+     * get db_prefix.
+     *
+     */
+    function db_prefix()
+    {
+        return Funs::DB_Prefix();
     }
 }
