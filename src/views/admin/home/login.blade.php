@@ -56,7 +56,7 @@
             <?php $colName = $col->COLUMN_NAME; ?>
             <div class="form-group has-feedback{{ $errors->has($colName) ? ' has-error' : '' }}">
                 <label for="{{$colName}}"
-                       class="control-label">@lang($col->TITLE)</label>
+                       class="control-label">@lang($col->TITLE):</label>
                     <input id="{{$colName}}" type="{{$colName=='email'?'email':'text'}}"
                            class="form-control" name="{{$colName}}"
                            value="{{ old($colName) }}" required autofocus>
@@ -64,12 +64,12 @@
 
                     @if ($errors->has($colName))
                         <span class="help-block">
-                                        <strong>{{ $errors->first($colName) }}</strong>
-                                    </span>
+                            <strong>{{ $errors->first($colName) }}</strong>
+                        </span>
                     @endif
             </div>
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                <label for="password" class="control-label">@lang('Password')</label>
+                <label for="password" class="control-label">@lang('Password'):</label>
                     <input id="password" type="password" class="form-control" name="password" required>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     @if ($errors->has('password'))
