@@ -72,7 +72,6 @@ class JalmatariComposer
                 $acountTypes = $acountTypes->map(function ($value) {
                     return __($value);
                 });
-                // TODO be sure to not save user with job title 2(Site Manager);
                 $col->inputType = 'select';
                 $col->inputSource = $acountTypes;
             }

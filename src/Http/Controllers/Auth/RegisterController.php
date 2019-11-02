@@ -60,6 +60,8 @@ class RegisterController extends MyBaseController
         if (count($this->cols) == 0)
             $this->cols = [ "email", "name", "password" ];
         foreach ($this->cols as $col) {
+            if ($col == 'job_title')
+                continue;
             $rule = 'required|string';
             if ($col == 'email')
                 $rule .= '|email';
@@ -83,7 +85,13 @@ class RegisterController extends MyBaseController
     protected function create(array $data)
     {
         $cols = [];
+
         foreach ($this->cols as $col) {
+            if ($col == 'job_title') {
+                $col = 'acount_type';
+                if ($data[ $col ] == 2)  //trying to hack by forcing account type to be Site Manager
+                    abort(500);
+            }
             $row = $data[ $col ];
             if ($col == 'password')
                 $row = bcrypt($row);
