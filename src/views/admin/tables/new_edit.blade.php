@@ -115,7 +115,7 @@
                     <div class="form-group col-md-2 text-muted">
                         <span class="col-position text-green text-bold">{{$col->ORDINAL_POSITION}}</span>
                         -
-                        <span class="column-name" data-id="{{$col->ID}}">{{$col->COLUMN_NAME}}</span>
+                        <span class="column-name" data-id="{{Funs::IsIn($col,'ID',0)}}">{{$col->COLUMN_NAME}}</span>
                         {!! Funs::Form('hidden',['cols[ID][]',Funs::IsIn($col,'ID',null)]) !!}
                         {!! Funs::Form('hidden',['cols[ORDINAL_POSITION][]',$col->ORDINAL_POSITION,['class'=>'form-control col-xs-2','readonly']]) !!}
                         {!! Funs::Form('hidden',['cols[COLUMN_NAME][]',$col->COLUMN_NAME,['class'=>'form-control col-xs-9','dir'=>'ltr','readonly']]) !!}

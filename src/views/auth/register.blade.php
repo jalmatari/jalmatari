@@ -18,11 +18,15 @@
                                         @lang($col->TITLE)
                                     </label>
                                     <div class="col-md-6">
-                                        <input id="{{$colName}}"
-                                               type="{{$colName=='email'?'email':'text'}}"
-                                               class="form-control" name="{{$colName}}"
-                                               value="{{ old($colName) }}"
-                                               required autofocus>
+                                        @if($col->inputType=='select')
+                                            {!! Funs::Form('select',[$colName,$col->inputSource,$col->inputValue,['class'=>'form-control','required'=>'required']]) !!}
+                                        @else
+                                            <input id="{{$colName}}"
+                                                   type="{{$col->inputType}}"
+                                                   class="form-control" name="{{$colName}}"
+                                                   value="{{ $col->inputValue }}"
+                                                   required autofocus>
+                                        @endif
                                         @if ($errors->has($colName))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first($colName) }}</strong>
@@ -31,39 +35,21 @@
                                     </div>
                                 </div>
                             @endforeach
-                            @if(!is_null($password))
-                                <?php $colName = $password->COLUMN_NAME ?>
-                                <div class="form-group{{ $errors->has($colName) ? ' has-error' : '' }}">
-                                    <label for="{{$colName}}"
-                                           class="col-md-4 control-label">
-                                        @lang($password->TITLE)
-                                    </label>
-                                    <div class="col-md-6">
-                                        <input id="{{$colName}}"
-                                               type="password"
-                                               class="form-control"
-                                               name="{{$colName}}"
-                                               required>
-                                        @if ($errors->has($colName))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first($colName) }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
+                            @if($cols->where('COLUMN_NAME','password')->count())
+                            <div class="form-group">
+                                <label for="password-confirm"
+                                       class="col-md-4 control-label">
+                                    @lang("Confirm Password")
+                                </label>
+                                <div class="col-md-6">
+                                    <input id="password-confirm"
+                                           type="password"
+                                           class="form-control"
+                                           name="password_confirmation"
+                                           value="{{old('password_confirmation')}}"
+                                           required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="{{$colName}}-confirm"
-                                           class="col-md-4 control-label">
-                                        @lang("Confirm Password")
-                                    </label>
-                                    <div class="col-md-6">
-                                        <input id="{{$colName}}-confirm"
-                                               type="password"
-                                               class="form-control"
-                                               name="{{$colName}}_confirmation"
-                                               required>
-                                    </div>
-                                </div>
+                            </div>
                             @endif
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">

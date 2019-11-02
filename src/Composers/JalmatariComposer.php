@@ -4,6 +4,7 @@ namespace Jalmatari\Composers;
 
 use Illuminate\View\View;
 use Jalmatari\Funs\Funs;
+use Jalmatari\Models\permissions;
 use Jalmatari\Models\tables_cols;
 
 class JalmatariComposer
@@ -52,20 +53,30 @@ class JalmatariComposer
             $cols = [ "email", "name", "password" ];
         $cols = tables_cols::whereRaw('TABLE_ID=(select id from ' . db_prefix() . 'tables where name ="users" limit 1)')
             ->whereIn('COLUMN_NAME', $cols)
+            ->orderBy('ORDINAL_POSITION')
             ->get();
 
-        $password = $cols->where('COLUMN_NAME', 'password');
-        if ($password->count()) {
-            $password = $password->first();
+        foreach ($cols as $col) {
+            $col->inputType = $col->COLUMN_NAME == 'email' ? 'email' : 'text';
+            if ($col->COLUMN_NAME == 'password')
+                $col->inputType = 'password';
+            $col->inputValue = old($col->COLUMN_NAME);
+            //for security Reasons, Change the key of job_title
+            if ($col->COLUMN_NAME == 'job_title') {
+                $col->COLUMN_NAME = "acount_type";
 
-            //Remove password from the collection
-            $cols = $cols->reject(function ($value, $key) {
-                return $value->COLUMN_NAME == 'password';
-            });
+                $acountTypes = permissions::active()
+                    ->where('id', '!=', 2) //Not Manager
+                    ->get()
+                    ->pluck('name', 'id');
+                $acountTypes = $acountTypes->map(function ($value) {
+                    return __($value);
+                });
+                // TODO be sure to not save user with job title 2(Site Manager);
+                $col->inputType = 'select';
+                $col->inputSource = $acountTypes;
+            }
         }
-        else
-            $password = null;
         $view->with('cols', $cols);
-        $view->with('password', $password);
     }
 }
