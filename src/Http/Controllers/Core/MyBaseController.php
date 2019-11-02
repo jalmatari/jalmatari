@@ -232,6 +232,11 @@ class MyBaseController extends Controller
 
     public function delete($id)
     {
+        $undeletableRow = j_config('undeletable_rows');
+        $undeletableRow = $undeletableRow[ $this->table ] ?? 0;
+
+        if ($undeletableRow && $id <= $undeletableRow)
+            return response()->json(__('This item cannot be deleted, this will cause a system error, you can modify it instead.'));
 
         call_user_func([ $this->tableModel->fullName, 'destroy' ], $id);
         Funs::Sync($this->table, $id, 0);
