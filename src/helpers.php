@@ -20,7 +20,9 @@ if (!function_exists('is_active_menu')) {
         $curRoute = request()->route()->getName();
         if (is_array($route)) {
             foreach ($route as $subRoute) {
-                $isCurrent = strpos($curRoute, $subRoute) === 0;
+                $isCurrent = $curRoute == $subRoute;
+                //Not Empty
+                $isCurrent = $isCurrent || ($subRoute != '' && strpos($curRoute, $subRoute) === 0);
                 if ($isCurrent)
                     break;
             }
@@ -87,9 +89,10 @@ if (!function_exists('deleted_user')) {
 if (!function_exists('j_asset')) {
     function j_asset($path, $secure = null)
     {
-        $url=asset($path, $secure);
-        if(strpos($url,'?')===false)
-            $url.='?ver='.(setting('ver')??'0.1');
+        $url = asset($path, $secure);
+        if (strpos($url, '?') === false)
+            $url .= '?ver=' . (setting('ver') ?? '0.1');
+
         return $url;
     }
 }
@@ -123,13 +126,13 @@ if (!function_exists('j_config')) {
 }
 
 
-if (! function_exists('array_pluck')) {
+if (!function_exists('array_pluck')) {
     /**
      * Pluck an array of values from an array.
      *
-     * @param  array   $array
-     * @param  string|array  $value
-     * @param  string|array|null  $key
+     * @param array $array
+     * @param string|array $value
+     * @param string|array|null $key
      * @return array
      *
      */
@@ -139,7 +142,7 @@ if (! function_exists('array_pluck')) {
     }
 }
 
-if (! function_exists('db_prefix')) {
+if (!function_exists('db_prefix')) {
     /**
      * get db_prefix.
      *
