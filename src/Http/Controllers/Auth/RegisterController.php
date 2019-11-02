@@ -5,6 +5,7 @@ namespace Jalmatari\Http\Controllers\Auth;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
+use Jalmatari\Funs\Funs;
 use Jalmatari\Http\Controllers\Core\MyBaseController;
 
 class RegisterController extends MyBaseController
@@ -27,7 +28,14 @@ class RegisterController extends MyBaseController
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
+
+    /**
+     * What Columns when registration.
+     *
+     * @var array
+     */
+    protected $cols = [];
 
     /**
      * Create a new controller instance.
@@ -47,16 +55,23 @@ class RegisterController extends MyBaseController
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed',
-        ], [
-            'required'  => 'لا بد من تعبئة هذا الحقل ليمكنك إكمال التسجيل.',
-            'unique'    => 'البريد الإلكتروني موجود مسبقاً في النظام',
-            'confirmed' => 'كلمة المرور غير مطابقة في الحقلين!',
-            'email'     => 'بريد إلكتروني غير صالح!'
-        ]);
+        $cols = [];
+        $this->cols = Funs::SettingAsArr('authRegisterCols');
+        if (count($this->cols) == 0)
+            $this->cols = [ "email", "name", "password" ];
+        foreach ($this->cols as $col) {
+            $rule = 'required|string';
+            if ($col == 'email')
+                $rule .= '|email';
+            if (in_array($col, [ 'email', 'username', 'phone' ]))
+                $rule .= '|unique:users';
+            else if ($col == 'password')
+                $rule .= '|confirmed';
+
+            $cols[ $col ] = $rule;
+        }
+
+        return Validator::make($data, $cols);
     }
 
     /**
@@ -67,10 +82,21 @@ class RegisterController extends MyBaseController
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $cols = [];
+        foreach ($this->cols as $col) {
+            $row = $data[ $col ];
+            if ($col == 'password')
+                $row = bcrypt($row);
+            $cols[ $col ] = $row;
+        }
+        session()->flash('alert', __("Your account has been successfully registered"));
+        $user = User::create($cols);
+        foreach ($cols as $col => $value)
+            if (!in_array($col, [ 'name', 'email', 'password', ]))    //not in default fillable
+                $user->{$col} = $value;
+
+        $user->save();
+
+        return $user;
     }
 }

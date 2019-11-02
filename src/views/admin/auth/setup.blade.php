@@ -34,11 +34,11 @@
                 </div>
                 <br><br>
                 <h4>بيانات تسجيل دخول الموقع:</h4>
-                {!! Funs::Form('select',['loginCols',$authList,$authLoginCols,['multiple'=>'multiple']]) !!}
+                {!! Funs::Form('select',['loginCol',$authList,$authLoginCol]) !!}
                 <div class="clearfix"></div>
                 <br><br>
                 <h4>بيانات تسجيل دخول لوحة التحكم:</h4>
-                {!! Funs::Form('select',['adminLoginCols',$authList,$authAdminLoginCols,['multiple'=>'multiple']]) !!}
+                {!! Funs::Form('select',['adminLoginCol',$authList,$authAdminLoginCol]) !!}
                 <div class="clearfix"></div>
                 <br><br>
                 <div class="box-footer">
@@ -55,24 +55,20 @@
         $(function () {
             $('#btn-save').click(function () {
                 let registerCols = [];
-                let loginCols = [];
-                let adminLoginCols = [];
                 $('#register-cols input:checked').each(function () {
                     registerCols.push(this.value);
                 });
-                $('[name="loginCols"] option:selected').each(function () {
-                    loginCols.push(this.value);
-                });
-                $('[name="adminLoginCols"] option:selected').each(function () {
-                    adminLoginCols.push(this.value);
-                });
-                if (registerCols.length == 0 || loginCols.length == 0 || adminLoginCols.length == 0)
+
+                let loginCol = $('[name="loginCol"]').val();
+                let adminLoginCol = $('[name="adminLoginCol"]').val();
+
+                if (registerCols.length == 0 || _.isUndefined(loginCol) || _.isUndefined(adminLoginCol))
                     alert('يرجى إدخال على الأقل حقل واحد!');
                 else
                     J.api({
                         registerCols: registerCols,
-                        loginCols: loginCols,
-                        adminLoginCols: adminLoginCols
+                        loginCol: loginCol,
+                        adminLoginCol: adminLoginCol
                     }, colsSaved, '{{route_('admin.auth.setup')}}');
                 return false;
             });

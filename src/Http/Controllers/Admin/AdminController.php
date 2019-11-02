@@ -130,27 +130,27 @@ class AdminController extends MyBaseController
             ->groupBy('TABLE_ID');
         $authList = $tables
             ->first()
-            ->whereIn('COLUMN_NAME', [ 'name', 'username', 'phone', 'email', 'job_title' ])
+            ->whereIn('COLUMN_NAME', [ 'name', 'username', 'phone', 'email' ])
             ->pluck('TITLE', 'COLUMN_NAME');
 
         $authRegisterCols = Funs::SettingAsArr('authRegisterCols');
-        $authLoginCols = Funs::SettingAsArr('authLoginCols');
-        $authAdminLoginCols = Funs::SettingAsArr('authAdminLoginCols');
+        $authLoginCol = setting('authLoginCol');
+        $authAdminLoginCol = setting('authAdminLoginCol');
         if (count($authRegisterCols) == 0)
             $authRegisterCols = [ 'name', 'email', 'password' ];
-        if (count($authLoginCols) == 0)
-            $authLoginCols = [ 'email', 'password' ];
-        if (count($authAdminLoginCols) == 0)
-            $authAdminLoginCols = [ 'username', 'password' ];
+        if (is_null($authLoginCol) )
+            $authLoginCol = 'email';
+        if (is_null($authAdminLoginCol) )
+            $authAdminLoginCol =  'username';
 
-        return view('admin.auth.setup', compact('tables', 'authRegisterCols', 'authLoginCols', 'authList', 'authAdminLoginCols'));
+        return view('admin.auth.setup', compact('tables', 'authRegisterCols', 'authLoginCol', 'authList', 'authAdminLoginCol'));
     }
 
     public function saveAuthCols()
     {
         setting('authRegisterCols', json_encode(request('registerCols')));
-        setting('authLoginCols', json_encode(request('loginCols')));
-        setting('authAdminLoginCols', json_encode(request('adminLoginCols')));
+        setting('authLoginCol', request('loginCol'));
+        setting('authAdminLoginCol', request('adminLoginCol'));
 
         return response()->json(true);
     }

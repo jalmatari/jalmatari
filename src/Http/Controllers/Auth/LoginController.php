@@ -43,6 +43,10 @@ class LoginController extends MyBaseController
         $this->middleware('guest')->except('logout');
     }
 
+    public function username()
+    {
+        return setting('authLoginCol') ?? 'email';
+    }
 
     public function showLoginForm()
     {
