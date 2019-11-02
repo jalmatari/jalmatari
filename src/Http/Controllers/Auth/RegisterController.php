@@ -88,11 +88,12 @@ class RegisterController extends MyBaseController
 
         foreach ($this->cols as $col) {
             if ($col == 'job_title') {
-                $col = 'acount_type';
-                if ($data[ $col ] == 2)  //trying to hack by forcing account type to be Site Manager
+                $row = $data['acount_type'];
+                if ($row == 2)  //trying to hack by forcing account type to be Site Manager
                     abort(500);
             }
-            $row = $data[ $col ];
+            else
+                $row = $data[ $col ];
             if ($col == 'password')
                 $row = bcrypt($row);
             $cols[ $col ] = $row;
