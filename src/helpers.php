@@ -116,12 +116,12 @@ if (!function_exists('j_config')) {
         if (!is_array($key))
             $key = 'jalmatari.' . $key;
         $config = config($key, $default);
-        if (is_null($config)) {
+        if (is_null($config) && is_null(config('jalmatari'))) {
             $btn = '<a href="' . route_('jalmatari.publish.config') . '">' . __('Publish It?') . '</a>';
             Funs::Abort(500, __('Jalmatari Config File is not Exists!') . $btn);
         }
 
-        return config($key, $default);
+        return $config;
     }
 }
 
