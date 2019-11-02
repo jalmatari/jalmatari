@@ -83,7 +83,7 @@
                 <label class="remember">
                     <input type="checkbox"
                            id="remember"
-                           name="remember" {{ old('remember') ? 'checked' : '' }}>
+                           name="remember" checked>
                     @lang('Remember me')
                 </label>
             </div>
