@@ -94,7 +94,7 @@
                     let groupId = "input-group-" + $(this).attr('id');
                     $(this).before('<div class="input-group date" id="' + groupId + '"><div class="input-group-addon"> <i class="fa fa-calendar"></i> </div></div>')
                     $('#' + groupId).append($(this));
-                    $('#' + groupId).click( function () {
+                    $('#' + groupId).click(function () {
                         let theInput = $(this).find('input');
                         if (!theInput.datepicker("widget").is(":visible"))
                             theInput.focus();
@@ -179,6 +179,8 @@
 
 
                         }
+                        if (is_null($selected))
+                            $selected = array_keys($row['data'])[0] ?? null;
                         ?>
                         {!!Funs::Form('select',[$key, $row['data'],$selected, $otherPars])!!}
                     @else
