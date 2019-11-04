@@ -310,7 +310,6 @@ trait AutoController
 
     public static function SaveDataToTable($data = null, $table = null, $updateId = null, $affectedRow = false)
     {
-
         cache()->clear();
         $str = "good";
         if (is_null($data))
