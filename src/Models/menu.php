@@ -29,7 +29,7 @@ class menu extends myModel
         if (!is_null($data)&&$data!==0)
             $routes->prepend($data, $data);
 
-        return $routes;
+        return $routes->toArray();
     }
 
     public static function SubMenusList($parent_id = 0, $subPrefix = '|----- ', $subPrefixType = '|----- ')
