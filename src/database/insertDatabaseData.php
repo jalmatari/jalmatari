@@ -2693,6 +2693,15 @@ $routes = [
     [
         'type'          => 0,
         'middleware'    => 'AdminAuth',
+        'controller_id' => 7,
+        'action'        => 'genAll',
+        'route'         => 'genAll',
+        'id_required'   => 1,
+        'status'        => 1
+    ],
+    [
+        'type'          => 0,
+        'middleware'    => 'AdminAuth',
         'controller_id' => 8,
         'action'        => 'login_as',
         'route'         => 'login_as',
