@@ -50,7 +50,7 @@ if (!function_exists('month_seconds')) {
 if (!function_exists('cache_')) {
     function cache_($varName, $default, $expire = null)
     {
-        return cache()->remember($varName, $expire ?? month_seconds(), $default);
+        return cache()->remember($varName . '_' . app()->getLocale(), $expire ?? month_seconds(), $default);
     }
 }
 
