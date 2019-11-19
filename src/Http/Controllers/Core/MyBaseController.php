@@ -322,6 +322,7 @@ class MyBaseController extends Controller
             $table->save();
             $ordered = true;
         }
+        cache()->clear();
 
         return $ordered;
     }
