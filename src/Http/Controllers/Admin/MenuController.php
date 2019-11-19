@@ -20,6 +20,7 @@ class MenuController extends MyBaseController
     {
         $this->init();
         $this->mainRoute = 'admin.menu';
+        unset($this->privateMethods[array_search('orderMenus',$this->privateMethods)]);
     }
 
     public function getData($data = [])
