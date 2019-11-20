@@ -152,3 +152,14 @@ if (!function_exists('db_prefix')) {
         return Funs::DB_Prefix();
     }
 }
+
+if (!function_exists('only_auth')) {
+    /**
+     * check If User Is Loge-in; otherwise, abort(403,'Forbidden')
+     */
+    function only_auth()
+    {
+        if (!auth()->check())
+            abort(403, 'Forbidden');
+    }
+}
