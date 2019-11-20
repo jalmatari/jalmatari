@@ -163,3 +163,13 @@ if (!function_exists('only_auth')) {
             abort(403, 'Forbidden');
     }
 }
+
+if (!function_exists('user')) {
+    /**
+     * shorthand for auth()->user();
+     */
+    function user()
+    {
+        return auth()->user();
+    }
+}
