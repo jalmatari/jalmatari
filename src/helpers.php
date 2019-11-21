@@ -173,3 +173,17 @@ if (!function_exists('user')) {
         return auth()->user();
     }
 }
+if (!function_exists('paginateCollection')) {
+    /**
+     * convert Collection to pagination
+     */
+    function paginateCollection($items, $page = null, $perPage = 10, $options = [])
+    {
+        $page = $page ?: (Illuminate\Pagination\Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Illuminate\Support\Collection ? $items : Illuminate\Support\Collection::make($items);
+        $paginator = new Illuminate\Pagination\LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+        $paginator->setPath(request()->path());
+
+        return $paginator;
+    }
+}
