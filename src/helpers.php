@@ -161,6 +161,7 @@ if (!function_exists('only_auth')) {
     {
         if (!auth()->check())
             abort(403, 'Forbidden');
+        return auth()->user();
     }
 }
 
