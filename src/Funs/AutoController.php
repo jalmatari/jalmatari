@@ -50,10 +50,10 @@ trait AutoController
     /**
      * To Create View with table Compatible with DataTabple class and his Ajax.
      *
-     * @param   array $cols List of columns.
-     * @param   sting $table Table name.
-     * @param   string $view The View Path Ex:'Home.Index'.
-     * @param   int $title The Title that is defined in Table comments,[1=title , 2=new ,3=edit ,title]..
+     * @param array $cols List of columns.
+     * @param sting $table Table name.
+     * @param string $view The View Path Ex:'Home.Index'.
+     * @param int $title The Title that is defined in Table comments,[1=title , 2=new ,3=edit ,title]..
      * @return  View                The final view that is defined in $view.
      */
     public static function ListView($cols, $table = null, $view = null, $title = 1, $other_view = null)
@@ -67,7 +67,8 @@ trait AutoController
         if (is_null($view)) {
             $view = static::$listView;
         }
-        View::share('title', static::_t($table, $title));
+        if (is_null(view()->shared('title')))
+            view()->share('title', static::_t($table, $title));
 
         return view($view, [ 'cols' => static::ArabicCols($cols), 'name' => $table, 'other_view' => $other_view ]);
     }
@@ -77,8 +78,8 @@ trait AutoController
      *
      * Get Title from table Comments..
      *
-     * @param   string $table The name of Table.
-     * @param   int $kind The title you want [1=title , 2=new ,3=edit]. or it's title
+     * @param string $table The name of Table.
+     * @param int $kind The title you want [1=title , 2=new ,3=edit]. or it's title
      * @return  String          The Title that is defined in Table comments.
      */
     public static function _t($table = null, $kind = 1)
@@ -96,8 +97,8 @@ trait AutoController
 
     /** Get Arabic Texts For The Columns
      *
-     * @param   array $cols The columns Array.
-     * @param   null $table The tabel Name.
+     * @param array $cols The columns Array.
+     * @param null $table The tabel Name.
      * @return  array               The columns With Arabic Texts.
      */
     public static function ArabicCols($cols, $table = null)
@@ -120,7 +121,7 @@ trait AutoController
 
     /** Get Table Columns
      *
-     * @param   null $table The tabel Name.
+     * @param null $table The tabel Name.
      * @param bool $showAll
      * @param bool $toArray
      * @return array The columns With Arabic Texts.
@@ -130,7 +131,7 @@ trait AutoController
         if (is_null($table))
             $table = static::$table;
 
-        $cols = tables::where('name', $table)->first()->cols??null;
+        $cols = tables::where('name', $table)->first()->cols ?? null;
         if (is_null($cols))
             return [];
 
@@ -153,10 +154,10 @@ trait AutoController
 
     /** generate the dataTables
      *
-     * @param   array $cols The columns names
-     * @param   string $table Table Name
-     * @param   string $id The primary Key
-     * @param   string $myWhere add custom where in qurey.
+     * @param array $cols The columns names
+     * @param string $table Table Name
+     * @param string $id The primary Key
+     * @param string $myWhere add custom where in qurey.
      * @return  string              Json string for Ajax POST request.
      */
     public static function getData($cols, $table = null, $id = 'id', $myWhere = null)
@@ -197,10 +198,10 @@ trait AutoController
 
     /** to create 3 buttons [Edit,publish-unpublish,delete] for the table rows.
      *
-     * @param   int $id id of table row
-     * @param   string $route the route for the buttons
-     * @param   tinyInt $statusVal status of publish
-     * @param   array $btns what buttons shuold return, if empty=all;
+     * @param int $id id of table row
+     * @param string $route the route for the buttons
+     * @param tinyInt $statusVal status of publish
+     * @param array $btns what buttons shuold return, if empty=all;
      * @return  Html                  3 buttons
      */
     public static function controllersIcons($id, $route, $statusVal, $btns = [])
@@ -224,7 +225,7 @@ trait AutoController
                 $btn = $btns_[ $row ];
             }
             $url = route_('admin.' . $route . '.' . $btn[1], $id);
-            $txt .= static::TableBtn( $btn[0],
+            $txt .= static::TableBtn($btn[0],
                 "href='{$url}' id='{$btn[1]}_{$id}'",
                 $btn[2],
                 $btn[3],
@@ -238,8 +239,8 @@ trait AutoController
 
     /** Re format Json string to lines or tables
      *
-     * @param   string $Str Json String.
-     * @param   int $kind Type of Format [1=lines , 2=table]
+     * @param string $Str Json String.
+     * @param int $kind Type of Format [1=lines , 2=table]
      * @return  string          Formated Html String..
      */
     public static function deJsonArray($Str, $kind = 1)
@@ -262,11 +263,11 @@ trait AutoController
 
     /** Get Columns Names , types , data and other options
      *
-     * @param   string $route The route for the form.
-     * @param   string $table Table name to get the information from it and it comments.
-     * @param   array $data To pass data to the columns.
-     * @param   int $title To pass The Title that is defined in Table comments,[1=title , 2=new ,3=edit].
-     * @param   string $include_view To include other path view to include it.
+     * @param string $route The route for the form.
+     * @param string $table Table name to get the information from it and it comments.
+     * @param array $data To pass data to the columns.
+     * @param int $title To pass The Title that is defined in Table comments,[1=title , 2=new ,3=edit].
+     * @param string $include_view To include other path view to include it.
      * @return  View                    Return the final View with all it's parameters .
      */
     public static function NewEditView($route, $table = null, $data = null, $title = 2, $include_view = null)
@@ -296,7 +297,7 @@ trait AutoController
             $dataToPass['include_view'] = $include_view;
         foreach ($dataToPass['rows'] as $key => $avl)
             unset($data[ $key ]);
-        if (is_array($data)&&count($data) >= 1)
+        if (is_array($data) && count($data) >= 1)
             $dataToPass = array_merge($dataToPass, $data);
 
 
