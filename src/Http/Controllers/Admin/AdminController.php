@@ -42,13 +42,13 @@ class AdminController extends MyBaseController
 
     public function storeSession()
     {
-        //dd(bcrypt(request('password')),request('password'));
-        //dd(\Hash::make(request('password')),strlen(\Hash::make(request('password'))),request('password'),users::find(1)->password);
-        //dd(Auth::attempt(request()->only('username', 'password')));
 
-
+        $col = setting('authAdminLoginCol');
+        if (is_null($col))
+            $col = 'email';
+        $col=[$col,'password'];
         cache()->clear();
-        if (auth()->attempt(request()->only('username', 'password'), request()->has('remember')))
+        if (auth()->attempt(request()->only($col), request()->has('remember')))
             return redirect()->route('admin');
 
         return redirect()->back()->withInput();
