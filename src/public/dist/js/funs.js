@@ -14,42 +14,20 @@ $(document).ready(function () {
     $('#research-upload').after(function () {
         return '<a id="research-upload-btn" data-btn_id="research-upload" class="btn btn-primary"> تحديد الملف</a>';
     });
-    if ($('#img-upload').val() == "")
-        $('#img-upload').val('/jalmatari/img/users/default-user.png')
-    $('#img-upload').attr('readonly', 'readonly');
-    $('#img-upload').addClass('col-md-9');
-    $('#img-upload').before('<a id="img-upload-btn" data-btn_id="img-upload" class="btn btn-primary btn-xs"> تحديد الصورة</a>');
-    $('#img-upload').after('<div class="col-md-3 user-img-div"><img class="user-img" src="' + $('#img-upload').val() + '"></div>');
-    $('#img-upload').before('<div class="clearfix"></div>');
-    function fileManager(e) {
+    let imgUploadCounter = 1;
+    $('#img-upload,.img-upload').each(function () {
+        if ($(this).val() == "")
+            $(this).val('/jalmatari/img/users/default-user.png');
+        let theId = 'img-upload-' + (imgUploadCounter++);
+        $(this).attr('id', theId);
+        $(this).attr('readonly', 'readonly');
+        $(this).addClass('col-md-9');
+        $(this).before('<a id="' + theId + '-btn" data-btn_id="' + theId + '" class="btn btn-primary btn-xs"> تحديد الصورة</a>');
+        $('#' + theId + '-btn').click(fileManager);
+        $(this).after('<div class="col-md-3 user-img-div"><img class="user-img" src="' + $(this).val() + '"></div>');
+        $(this).before('<div class="clearfix"></div>');
+    });
 
-        $('<div id="fileManagerPanel" />').dialogelfinder({
-            lang: 'ar',             // language (OPTIONAL)
-            url: '/jalmatari/elfinder/connector'+ (typeof fileManagerUrl == "undefined" ? '' : '?url=' + fileManagerUrl),
-            width: '80%',
-            height: '600px',
-            dateFormat: 'Y-m-d',
-            customData:_globalObj,
-            ui:['toolbar', 'stat'],
-            uiOptions: {
-                // toolbar configuration
-                toolbar: [
-                    ['back', 'forward'],
-                    ['mkdir',  'upload']
-                ]
-            },
-            getFileCallback: function (file) {
-                var filePath = file; //file contains the relative url.
-                $('#' + $(e.toElement).data('btn_id')).val(filePath.url)
-                    .next('.user-img-div').find('img').attr('src', filePath.url);
-                $('#fileManagerPanel').remove(); //close the window after image is selected
-            }
-        });
-        return false;
-    }
-
-
-    $('#img-upload-btn').click(fileManager);
 
     $('select[multiple="multiple"]:not(.un-advanced-select,.no-select-all)').after('<button class="btn btn-xs btn-primary un-select-all"><i class="fa fa-fw fa-square-o"></i> إلغاء الجميع</button>' +
         ' <button class="btn btn-xs btn-success select-all"><i class="fa fa-fw fa-check-square-o"></i> اختيار الجميع</button>');
@@ -72,6 +50,34 @@ $(document).ready(function () {
     });
     setIcheck();
 });
+
+
+function fileManager(e) {
+
+    $('<div id="fileManagerPanel" />').dialogelfinder({
+        lang: 'ar',             // language (OPTIONAL)
+        url: '/jalmatari/elfinder/connector' + (typeof fileManagerUrl == "undefined" ? '' : '?url=' + fileManagerUrl),
+        width: '80%',
+        height: '600px',
+        dateFormat: 'Y-m-d',
+        customData: _globalObj,
+        ui: ['toolbar', 'stat'],
+        uiOptions: {
+            // toolbar configuration
+            toolbar: [
+                ['back', 'forward'],
+                ['mkdir', 'upload']
+            ]
+        },
+        getFileCallback: function (file) {
+            var filePath = file; //file contains the relative url.
+            $('#' + $(e.toElement).data('btn_id')).val(filePath.url)
+                .next('.user-img-div').find('img').attr('src', filePath.url);
+            $('#fileManagerPanel').remove(); //close the window after image is selected
+        }
+    });
+    return false;
+}
 
 function GetJson(url, dataToPass, fun_to_call, type) {
     api(dataToPass, fun_to_call, url, type);
@@ -104,15 +110,15 @@ function addChosenSelect(selector) {
         selector = '';
     }
 
-    $(selector + " select.addable").on('chosen:ready',function(evt, params) {
-        let choElement=params.chosen;
-        let selElement=$(this);
+    $(selector + " select.addable").on('chosen:ready', function (evt, params) {
+        let choElement = params.chosen;
+        let selElement = $(this);
         choElement.container.bind('keyup', function (e) {
             if (e.which === 13) {//If "Enter" Pressed
-                let searchedTxt=choElement.search_field.val();
-                let noResults=$(this).find(".chosen-results").children('li').hasClass('no-results');
-                if(noResults&&searchedTxt.length>=1) {
-                    selElement.append('<option value="'+searchedTxt+'" selected>* '+searchedTxt+'</option>');
+                let searchedTxt = choElement.search_field.val();
+                let noResults = $(this).find(".chosen-results").children('li').hasClass('no-results');
+                if (noResults && searchedTxt.length >= 1) {
+                    selElement.append('<option value="' + searchedTxt + '" selected>* ' + searchedTxt + '</option>');
                     selElement.trigger("chosen:updated");
                 }
             }
@@ -213,6 +219,7 @@ function hint(txt, color) {
         color = "red";
     return '<br><sup class="hint-txt text-' + color + '">* تنويه: ' + txt + '</sup>';
 }
+
 function setIcheck() {
     $('input[type=checkbox]').iCheck('destroy');
     $('input:not(.un-icheck)[type=checkbox]').iCheck({
