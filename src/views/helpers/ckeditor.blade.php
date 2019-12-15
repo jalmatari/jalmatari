@@ -21,7 +21,7 @@
             uiOptions: {
                 // toolbar configuration
                 toolbar: [
-                    ['back', 'forward'],
+                    ['back', 'forward', 'up'],
                     ['mkdir',  'upload']
                 ]
             },
