@@ -160,8 +160,6 @@ class routes extends myModel
 
     public static function RouteRow($controller, $dRoute)
     {
-
-
         $routeName = '.' . (strlen($dRoute['route']) >= 1 ? '.' . $dRoute['route'] : '');
         if ($dRoute['middleware'] == 'AdminAuth')//not use table in path and admin if it public
             $routeName = 'admin.' . $controller->tableName . $routeName;
@@ -176,6 +174,7 @@ class routes extends myModel
         $dRoute['controller_id'] = $controller->id;
         $dRoute['namespace'] = $controller->namespace . (strlen($controller->namespace) >= 0 ? '\\' : '');
         $dRoute['controller_name'] = $controller->name;
+        $dRoute = static::OverrideControler($dRoute);
         $dRoute['status'] = 1;
         $dRoute['type'] = [ 'get', 'post' ][ $dRoute['type'] ];
         $dRoute['pars'] = [
@@ -184,5 +183,19 @@ class routes extends myModel
         ];
 
         return (object) $dRoute;
+    }
+
+    /**
+     * To Check if there is an Override Controller for current Class
+     * @param array $dRoute
+     */
+    public static function OverrideControler($dRoute)
+    {
+        $overrideNamespace = "App\Http\Controllers\Overrides\\";
+        if (class_exists($overrideNamespace . $dRoute['controller_name'])) {
+            $dRoute['namespace'] = $overrideNamespace;
+        }
+
+        return $dRoute;
     }
 }
