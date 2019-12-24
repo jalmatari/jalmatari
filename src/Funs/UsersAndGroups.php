@@ -7,10 +7,7 @@
 
 namespace Jalmatari\Funs;
 
-use Auth;
 use Jalmatari\Models\groups;
-use Jalmatari\Models\Menu;
-use Jalmatari\Models\permissions;
 use Jalmatari\Models\users;
 use Jalmatari\Models\users_groups;
 use Jalmatari\Models\users_settings;
@@ -27,7 +24,7 @@ trait UsersAndGroups
     {
         if ($uid == 0)
             return "زائر";
-        $user = users::where('id', '=', $uid)->first();
+        $user = users::where('id', $uid)->first();
         if (is_null($user))
             return 'مستخدم تم حذفه!';
         $val = $user;
@@ -58,7 +55,7 @@ trait UsersAndGroups
             return '<div class="text-red"><i class="fa fa-close"></i> &nbsp; لايوجد أي صلاحيات لدخول لوحة التحكم &nbsp; </div>';
         }
 
-        $menus = menu::where('status', 1)->get()->toArray();
+        $menus = static::MenusModel()->where('status', 1)->toArray();
         foreach ($menus as $row)
             $html .= (in_array($row['name'], $permissions) ? '<div class="permission-menu "><i class="fa ' . $row['icon'] . ' text-yellow"></i> <sub>' . $row['title'] . '</sub></div>' : '');
 
@@ -68,7 +65,7 @@ trait UsersAndGroups
 
     public static function GetHtmlPermissionsForUser($name, $permissions, $job_permissions)
     {
-        $menus = menu::where('status', '=', '1')->orderBy('parent', 'asc')->orderBy('ord', 'asc')->get();
+        $menus = static::MenusModel()->where('status', '1')->sortBy('parent', 'asc');
         $html = '<div class="user_permissions_fileds col-md-12"><div class="permissions_fileds">'
             . '<div class="box-header  with-border">'
             . '<h3 class="box-title text-blue">إضافة صلاحيات آخرى للمستخدم، بالإضافة إلى صلاحيات الوظيفة :</h3><div class="clear"></div></div>';
@@ -124,7 +121,7 @@ trait UsersAndGroups
         foreach ($users as $row) {
             $datetime = explode(" ", $row['updated_at']);
 
-            $job_title = permissions::find($row['job_title'])->name;
+            $job_title = static::GetJob($row['job_title'])->name;
             $html .= '<li  data-toggle="tooltip" title="' . $row['username'] . '">'
                 . '<img src="' . $row['photo'] . '" alt="' . $row['name'] . '">'
                 . '<a class="users-list-name" href="' . route_('admin.users.edit', $row['id']) . '">' . $row['name'] . '</a>'
@@ -172,7 +169,7 @@ trait UsersAndGroups
 
     public static function GetJob($id)
     {
-        return permissions::where('id', '=', $id)->first();
+        return static::PermissionsModel()->where('id', $id)->first();
     }
 
     public static function MenuUserinfo($row)
@@ -212,7 +209,7 @@ trait UsersAndGroups
 
     public static function GetListAllUsersInMyGroups($withJob = 1, $emailes = false)
     {
-        $curUserGroups = json_decode(Auth::user()->group);
+        $curUserGroups = json_decode(user()->group);
         $users = users::where('status', '1')->get();
         $final_arr = [];
         foreach ($users as $user) {
@@ -430,7 +427,7 @@ trait UsersAndGroups
     public static function UserId($userId = null)
     {
         if (($userId == 0 || is_null($userId)) && auth()->check())
-            $userId = auth()->user()->id;
+            $userId = user()->id;
 
         return $userId;
     }
