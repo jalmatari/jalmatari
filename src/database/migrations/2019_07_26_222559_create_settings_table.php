@@ -20,7 +20,7 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
             $table->string('name', 200)->nullable();
             $table->string('desc', 200)->nullable();
-            $table->enum('type', ['text', 'checkbox', 'textarea', 'multi', 'editor', 'article', 'list', 'multi_list', 'hidden'])->nullable()->default('text');
+            $table->enum('type', ['text', 'checkbox', 'textarea', 'multi', 'editor', 'article', 'list', 'multi_list', 'hidden', 'image'])->nullable()->default('text');
             $table->text('value')->nullable();
             $table->tinyInteger('status')->nullable()->default(1);
             $table->string('section', 20)->nullable()->default('site');

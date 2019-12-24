@@ -20,7 +20,7 @@
     <?php
     if (!isset($section))
         $section = $settings->first()->section;
-    $setting_count = $settings->where('section', $section)->where('status',1)->count();
+    $setting_count = $settings->where('section', $section)->where('status', 1)->count();
     $per_page = 10;
     $tabs_count = ceil($setting_count / $per_page);
     $editores = [];
@@ -43,18 +43,16 @@
                     $json_i = 0;
                     foreach ($settings as $row):
                     $class_hidden = "";
-                    $isInSection = ($section == $row->section&&$row->status==1);
+                    $isInSection = ($section == $row->section && $row->status == 1);
                     if (!$isInSection) {
                         $class_hidden = 'hidden';
-                    }
-                    else {
+                    } else {
                         $conter++;
                     }
                     if ($row['name'] == 'settings_names') {
 
                         continue;
-                    }
-                    elseif (($conter > $per_page && $conter % $per_page == 1) && $isInSection) {
+                    } elseif (($conter > $per_page && $conter % $per_page == 1) && $isInSection) {
                         echo '</div><div id="tab' . ceil($conter / $per_page) . '" class="tab-pane">';
                     }
                     ?>
@@ -105,10 +103,13 @@
                         @elseif ($row['type'] == "editor")
                             <?php $editores[] = $row['name']; ?>
                             {!! Funs::Form('textarea',[$row['name'],$row['value'],["class"=>"form-control editor"]]) !!}
+                        @elseif ($row['type'] == "image")
+                            {!! Funs::Form('text',[$row['name'],$row['value'],["class"=>"form-control img-upload ltr"]]) !!}
                         @else
                             {!! Funs::Form($row['type'],[$row['name'],$row['value'],["class"=>"form-control"]]) !!}
                         @endif
                     </div>
+                    <div class="clearfix"></div>
                     <?php endforeach; ?>
                 </div>
 
@@ -122,7 +123,8 @@
                     }
 
                 </script>
-                <div class="form-group">
+                <br>
+                <div class="box-footer">
                     {!! Form::submit('حفظ',["class"=>"btn btn-primary pull-left"]) !!}
                 </div>
                 <div class="clearfix"></div>
