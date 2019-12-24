@@ -9,7 +9,6 @@ namespace Jalmatari\Funs;
 
 use Jalmatari\Models\groups;
 use Jalmatari\Models\Menu;
-use Jalmatari\Models\paths_details;
 use Jalmatari\Models\permissions;
 use Jalmatari\Models\users;
 use Jalmatari\Models\users_groups;
