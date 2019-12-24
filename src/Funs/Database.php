@@ -25,12 +25,23 @@ trait Database
      */
     public static function DB_Prefix()
     {
-        return DB::getTablePrefix();
+        return cache_('DB_Prefix', function () {
+            return DB::getTablePrefix();
+        });
     }
 
     public static function DB_Name()
     {
-        return DB::getDatabaseName();
+        return cache_('DB_Name', function () {
+            return DB::getDatabaseName();
+        });
+    }
+
+    public static function MenusModel()
+    {
+        return cache_('all_menues', function () {
+            return menu::orderBy('ord')->get();
+        });
     }
 
     public static function Setting($name, $value = null)
@@ -106,6 +117,7 @@ trait Database
         $setting->save();
 
         cache()->clear();
+
         return $setting;
     }
 
@@ -116,10 +128,9 @@ trait Database
             $menus = [];
             if ($parent >= 0) {
                 $kinds = [ 1 => 'الموقع', 2 => 'الإدارة' ];
-                $menus = menu::where('parent', $parent);
+                $menus = static::MenusModel()->where('parent', $parent);
                 if (!static::IsAdmini())
                     $menus = $menus->where('status', 1);
-                $menus = $menus->orderBy('ord')->get();
             }
 
             return $menus;
@@ -128,14 +139,14 @@ trait Database
 
     public static function parentId($name)
     {
-        return menu::where('name', '=', $name)->first()->parent;
+        return static::MenusModel()->where('name', $name)->first()->parent;
     }
 
     public static function MenuParents($parent_id)
     {
         $parents = collect();
         if ($parent_id > 0) {
-            $parents = menu::where('id', $parent_id)->get();
+            $parents = static::MenusModel()->where('id', $parent_id);
             $parent = $parents->first()->parent;
             if ($parent > 0)
                 $parents = $parents->merge(static::MenuParents($parent));
@@ -148,7 +159,7 @@ trait Database
     {
         $subMenus = collect();
         if ($menu_id > 0) {
-            $subMenus = menu::where('parent', $menu_id)->get();
+            $subMenus = static::MenusModel()->where('parent', $menu_id);
             $temSubMenus = $subMenus;
             foreach ($temSubMenus as $subMenu) {
                 $temSubMenu = static::SubMenusOfMenu($subMenu->id);
@@ -168,7 +179,7 @@ trait Database
         if (is_null(static::$curMenu)) {
             static::$curMenus = collect();
             $curRoute = static::$curRoute;
-            static::$curMenu = menu::where('link', $curRoute)->first();
+            static::$curMenu = static::MenusModel()->where('link', $curRoute)->first();
             $curMenu = static::$curMenu;
             if (isset($curMenu->id)) {
                 static::$curMenus = static::$curMenus->merge(static::MenuParents($curMenu->parent));//parent menues
@@ -190,8 +201,7 @@ trait Database
 
         if ($route == $curRoute || static::$curMenus->where('link', $route)->count() >= 1) {
             $isCurr = true;
-        }
-        else {
+        } else {
             $curRoute = explode('.', $curRoute);
             $temRoute = $curRoute[0];
             $routes = [];
@@ -206,7 +216,7 @@ trait Database
             }
             if (!$isCurr) {
                 $parents = static::ParentsIdsOfRoutes($routes);
-                $parents = menu::whereIn('id', $parents)->where('link', $route);
+                $parents = static::MenusModel()->whereIn('id', $parents)->where('link', $route);
                 $isCurr = $parents->count() >= 1;
 
             }
@@ -219,8 +229,8 @@ trait Database
     public static function ParentsIdsOfRoutes($routes = [])
     {
         $parents = [];
-        $temParents = menu::whereIn('link', $routes)->get()->pluck('parent');
-        $temParents = menu::whereIn('id', $temParents)->get();
+        $temParents = static::MenusModel()->whereIn('link', $routes)->pluck('parent');
+        $temParents = static::MenusModel()->whereIn('id', $temParents);
         foreach ($temParents as $parent) {
             $parents[] = $parent->id;
             if ($parent->parent > 0)
@@ -232,9 +242,9 @@ trait Database
 
     public static function ShowMenu($link)
     {
-        $permissions = json_decode(permissions::where('status', '=', 1)->where('id', '=', Auth::user()->job_title)->first()->permissions);
+        $permissions = json_decode(permissions::where('status', 1)->where('id', Auth::user()->job_title)->first()->permissions);
         $permissions = array_merge($permissions, (array) json_decode(Auth::user()->permissions));
-        $menu = menu::where('status', '=', 1)->where('link', '=', $link);
+        $menu = static::MenusModel()->where('status', 1)->where('link', $link);
         if ($menu->count() >= 1) {
             $menu = $menu->first()->name;
         }
