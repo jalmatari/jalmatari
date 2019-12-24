@@ -7,13 +7,14 @@
 
 namespace Jalmatari\Funs;
 
+use Auth;
 use Jalmatari\Models\groups;
 use Jalmatari\Models\Menu;
 use Jalmatari\Models\permissions;
 use Jalmatari\Models\users;
 use Jalmatari\Models\users_groups;
 use Jalmatari\Models\users_settings;
-use Auth;
+
 //TODO: Need Improvements specially This Things That Can Replaced by Models
 trait UsersAndGroups
 {
@@ -33,11 +34,9 @@ trait UsersAndGroups
         if ($name && $job) {
             $val = $user->name . ($withSmallTag ?
                     ' <small class="text-yellow job-name">(' . static::GetJobTitle($user->job_title) . ")</small>" : ' (' . static::GetJobTitle($user->job_title) . ')');
-        }
-        elseif ($name) {
+        } elseif ($name) {
             $val = $user->name;
-        }
-        elseif ($job) {
+        } elseif ($job) {
             $val = static::GetJobTitle($user->job_title);
         }
 
@@ -59,7 +58,7 @@ trait UsersAndGroups
             return '<div class="text-red"><i class="fa fa-close"></i> &nbsp; لايوجد أي صلاحيات لدخول لوحة التحكم &nbsp; </div>';
         }
 
-        $menus =menu::where('status', 1)->get()->toArray();
+        $menus = menu::where('status', 1)->get()->toArray();
         foreach ($menus as $row)
             $html .= (in_array($row['name'], $permissions) ? '<div class="permission-menu "><i class="fa ' . $row['icon'] . ' text-yellow"></i> <sub>' . $row['title'] . '</sub></div>' : '');
 
@@ -194,8 +193,7 @@ trait UsersAndGroups
         $users = null;
         if ($job_id == 0) {
             $users = users::where('status', '1')->get();
-        }
-        else {
+        } else {
             $users = users::where('status', '1')->where('job_title', $job_id)->get();
         }
 
@@ -203,8 +201,7 @@ trait UsersAndGroups
         foreach ($users as $user) {
             if (!$withJob) {
                 $final_arr[ $user->id ] = $user->name;
-            }
-            else {
+            } else {
                 $final_arr[ $user->id ] = $user->name . ' (' . static::GetJobTitle($user->job_title) . ')';
             }
 
@@ -225,21 +222,18 @@ trait UsersAndGroups
                     $tem = '';
                     if (!$withJob) {
                         $tem = $user->name;
-                    }
-                    else {
+                    } else {
                         $tem = $user->name . ' (' . static::GetJobTitle($user->job_title) . ')';
                     }
                     if ($emailes) {
                         if (filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
                             $tem .= ' [' . $user->email . ']';
-                        }
-                        else {
+                        } else {
                             $final_arr['disabled'][] = $user->id;
                             $tem .= ' * لايوجد بريد إلكتروني.';
                         }
                         $final_arr['data'][ $user->id ] = $tem;
-                    }
-                    else {
+                    } else {
                         $final_arr[ $user->id ] = $tem;
                     }
 
@@ -263,8 +257,7 @@ trait UsersAndGroups
                 $row = (object) $row;
                 if ($section_id == $row->id) {
                     $final_arr = [ $row->id => $row->title . $preFix ] + $final_arr;
-                }
-                else {
+                } else {
                     $final_arr[ $row->id ] = $row->title . $preFix;
                 }
             }
@@ -462,8 +455,7 @@ trait UsersAndGroups
             $setting->save();
 
             return $value;
-        }
-        else {
+        } else {
             return null;
         }
     }
