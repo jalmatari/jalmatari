@@ -2,7 +2,6 @@
 
 namespace Jalmatari\Funs;
 
-use Auth;
 use DB;
 use Jalmatari\Models\menu;
 use Jalmatari\Models\permissions;
@@ -37,10 +36,20 @@ trait Database
         });
     }
 
+    /**
+     * @return menu[]
+     */
     public static function MenusModel()
     {
         return cache_('all_menues', function () {
             return menu::orderBy('ord')->get();
+        });
+    }
+
+    public static function PermissionsModel()
+    {
+        return cache_('alla_permissions', function () {
+            return permissions::all();
         });
     }
 
@@ -242,8 +251,8 @@ trait Database
 
     public static function ShowMenu($link)
     {
-        $permissions = json_decode(permissions::where('status', 1)->where('id', Auth::user()->job_title)->first()->permissions);
-        $permissions = array_merge($permissions, (array) json_decode(Auth::user()->permissions));
+        $permissions = json_decode(static::PermissionsModel()->where('status', 1)->where('id', user()->job_title)->first()->permissions);
+        $permissions = array_merge($permissions, (array) json_decode(user()->permissions));
         $menu = static::MenusModel()->where('status', 1)->where('link', $link);
         if ($menu->count() >= 1) {
             $menu = $menu->first()->name;
