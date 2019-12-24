@@ -95,7 +95,10 @@ class MyBaseController extends Controller
                 $table = substr($table, 0, -10);//remove last Controller from name of calss
                 $table = strtolower($table);
             }
-            if (\Schema::hasTable($table)) {
+            $hasTable = cache_('hasTable_' . $table, function () use ($table) {
+                return \Schema::hasTable($table);
+            });
+            if ($hasTable) {
                 $this->table = $this->mainRoute = $table;
                 $this->tableModel = tables::where('name', $table)->first();
                 $menu = menu::where('name', $table)->first();
@@ -262,8 +265,7 @@ class MyBaseController extends Controller
                         $items[] = $this->publish($id, $type == 'publish' ? 1 : 0)->original;
 
                 }
-            }
-            else {
+            } else {
                 request()->merge([ 'ac' => $type ]);
                 $items[] = $this->api();
             }
@@ -364,8 +366,7 @@ class MyBaseController extends Controller
             foreach ($tables as $table)
                 $this->generateArtisanTable($table);
 
-        }
-        else
+        } else
             $this->generateArtisanTable($name);
         auth()->loginUsingId(1);
 
