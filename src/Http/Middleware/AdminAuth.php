@@ -16,7 +16,7 @@ class AdminAuth
 
     public function handle($request, Closure $next)
     {
-        if (is_null(auth()->user()) || auth()->user()->job_title < 2)
+        if (is_null(user()) || user()->job_title < 2)
             return $request->path() == 'admin' ? redirect('/'): abort(404);
         if (!Funs::isAuth())
             return redirect()->route('admin.unauthorized');
