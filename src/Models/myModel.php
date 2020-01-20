@@ -53,9 +53,9 @@ class myModel extends Model
         if (!is_string($this->table))
             $this->table = '';
         if ($this->table != 'users') {
-            $fillable = $this->TableCols($this->table);
+            //$fillable = $this->TableCols($this->table);
             //ToDo make sure it's secure.. in this step....
-            $this->fillable = $fillable;
+            $this->guarded = ['id'];
         }
     }
 
