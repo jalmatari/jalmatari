@@ -188,3 +188,28 @@ if (!function_exists('paginateCollection')) {
         return $paginator;
     }
 }
+
+if (!function_exists('container')) {
+    /**
+     * To hold variables in runtime.
+     *
+     * @param mixed|null $key
+     * @param mixed|null $def
+     *
+     * @return mixed
+     */
+    function container($key, $def = null)
+    {
+        if (!app()->has('jalmatari-container')) {
+            app()->singleton('jalmatari-container', function () { return new \stdClass(); });
+        }
+        if (is_string($key)) {
+            return app('jalmatari-container')->{ $key } ?? $def;
+        } elseif (is_array($key) && count($key) > 1) {
+            app('jalmatari-container')->{ $key[0] } = $key[1];
+            return $key[1];
+        }
+
+        return $def;
+    }
+}
