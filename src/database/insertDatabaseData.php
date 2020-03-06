@@ -268,6 +268,14 @@ $settings = [
         'value'   => '',
         'status'  => 1,
         'section' => 'main'
+    ],
+    [
+        'name'    => 'settings-articles-cat',
+        'desc'    => 'التصنيف المستخدم في الإعدادات من نوع مقالة',
+        'type'    => 'hidden',
+        'value'   => '1',
+        'status'  => 1,
+        'section' => 'site'
     ]
 ];
 

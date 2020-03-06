@@ -64,8 +64,8 @@
                         @if ($row['type'] == "checkbox")
                             {!! Form::{$row['type']}($row['name'],"",($row['value']==1)) !!}
                         @elseif ($row['type'] == "article")
-                            {!! Form::select($row['name'],['a','b'],'',['id'=>$row['name'],'class'=>"form-control",'style'=>"width:100%;"]) !!}
-                            <a href="javascript:editItem('{!!rtrim(route_("admin.contents.edit",1), "1")!!}','{!!$row['name']!!}')"
+                            {!! Form::select($row['name'],\App\Jalmatari\Models\contents::WhereCat(setting('settings-articles-cat')??1)->pluck('title','id'),$row['value'],['id'=>$row['name'],'class'=>"form-control",'style'=>"width:100%;"]) !!}
+                            <a href="javascript:editItem('{!! route_("admin.contents.edit",':id')!!}','{!!$row['name']!!}')"
                                data-toggle="tooltip"
                                class="btn btn-info pull-left btn-xs" data-original-title="تحرير"
                                style="margin-right: 10px;">
@@ -115,11 +115,10 @@
 
                 <script language="javascript">
                     function editItem(the_url, id) {
-                        var e = document.getElementById(id);
-                        var str = e.options[e.selectedIndex].value;
-                        var win = window.open(the_url + str, '_blank');
+                        let e = document.getElementById(id);
+                        let str = e.options[e.selectedIndex].value;
+                        let win = window.open(the_url.replace(':id',str), '_blank');
                         win.focus();
-
                     }
 
                 </script>
