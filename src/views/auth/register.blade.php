@@ -8,6 +8,11 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">@lang("New Account")</div>
                     <div class="panel-body">
+                        @if(setting('registration-hint'))
+                        <div class="alert alert-warning">
+                            <strong>@lang('Hint'):</strong> {{setting('registration-hint')}}
+                        </div>
+                        @endif
                         <form class="form-horizontal" method="POST" action="{{ route_('register') }}">
                             {{ csrf_field() }}
                             @foreach($cols as $col)

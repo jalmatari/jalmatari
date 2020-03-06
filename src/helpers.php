@@ -209,7 +209,6 @@ if (!function_exists('container')) {
             app('jalmatari-container')->{ $key[0] } = $key[1];
             return $key[1];
         }
-
         return $def;
     }
 }

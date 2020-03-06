@@ -260,6 +260,14 @@ $settings = [
         'value'   => '0.0',
         'status'  => 1,
         'section' => 'site'
+    ],
+    [
+        'name'    => 'registration-hint',
+        'desc'    => 'رسالة التنويه عند تنويه عند تسجيل عضو جديد',
+        'type'    => 'textarea',
+        'value'   => '',
+        'status'  => 1,
+        'section' => 'main'
     ]
 ];
 
